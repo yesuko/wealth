@@ -38,7 +38,7 @@ dependencies:
   permission_handler: ^10.2.0
   # sim_data: ^0.0.2
   
-  # ussd_advanced: ^1.0.0
+  ussd_advanced: ^1.0.0
 
 dev_dependencies:
   flutter_test:

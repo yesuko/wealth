@@ -1,16 +1,8 @@
 # wealth
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A savings app.
+Do you find yourself in situations where you wished that on the daily any income that comes your way a percentae should be kept aside,
+in accessible to you until a certain period set by you is reached.
+The waelth app is the solution you need.
+It has the capabilty to automatically (per your permission) to deduct new icomes from:
+- MoMo wallet
+- Other channels will be added soon (currently working on it)

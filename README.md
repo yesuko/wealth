@@ -10,9 +10,8 @@ It has the capabilty to automatically (per your permission) to deduct new income
 ## login
 ![login](/screenshots/login.JPG)
 
-# register
+## register
 ![register](/screenshots/register.JPG)
-
-# home
+### home
 ![home](/screenshots/home.JPG)
 

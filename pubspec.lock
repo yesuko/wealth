@@ -227,14 +227,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
-  sim_data:
-    dependency: "direct main"
-    description:
-      name: sim_data
-      sha256: e84c58ed871ac6b543d82d929a4a4a62cfc24c4d03671fe30dfb39e7abe52335
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -288,14 +280,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
-  ussd_advanced:
-    dependency: "direct main"
-    description:
-      name: ussd_advanced
-      sha256: "37d36fd074f585e5a90409c413cc8eadd612beb11ec2c2cf5e7b2d41ccd3f958"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   vector_graphics:
     dependency: transitive
     description:

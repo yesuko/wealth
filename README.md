@@ -6,3 +6,6 @@ The waelth app is the solution you need.
 It has the capabilty to automatically (per your permission) to deduct new incomes from:
 - MoMo wallet
 - Other transaction media will be added soon (currently working on it)
+
+#screen shots
+![login](screenshots/login.jpg)

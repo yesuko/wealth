@@ -7,5 +7,12 @@ It has the capabilty to automatically (per your permission) to deduct new income
 - MoMo wallet
 - Other transaction media will be added soon (currently working on it)
 
-#screen shots
+# login
 ![login](/screenshots/login.JPG)
+
+# register
+![register](/screenshots/register.JPG)
+
+# home
+![home](/screenshots/home.JPG)
+

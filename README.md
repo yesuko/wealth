@@ -8,4 +8,4 @@ It has the capabilty to automatically (per your permission) to deduct new income
 - Other transaction media will be added soon (currently working on it)
 
 #screen shots
-![login](wealth/screenshots/login.jpg)
+-![login](wealth/screenshots/login.jpg)

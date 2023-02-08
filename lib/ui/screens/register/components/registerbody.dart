@@ -7,7 +7,6 @@ import 'package:wealth/ui/widgets/messenger.dart';
 import 'package:wealth/ui/widgets/rounded_button.dart';
 import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/rounded_password_field.dart';
-import 'package:wealth/util.dart';
 
 class RegisterBody extends StatelessWidget {
   RegisterBody({super.key});

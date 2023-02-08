@@ -24,7 +24,7 @@ class RegisterBody extends StatelessWidget {
             key: _formKey,
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              AvatarSlide(),
+              const AvatarSlide(),
               RoundedInputField(
                 hintText: "First Name",
                 onChanged: (value) {

@@ -5,12 +5,13 @@ class BottomSheetLayout {
     required BuildContext context,
     required final String header,
     required final Widget child,
+    final double? maxHeight,
   }) {
     final size = MediaQuery.of(context).size;
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        constraints: BoxConstraints(maxHeight: size.height * 0.5),
+        constraints: BoxConstraints(maxHeight: maxHeight ?? size.height * 0.5),
         builder: (context) {
           return Container(
             padding: EdgeInsets.only(

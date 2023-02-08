@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
+import 'package:wealth/ui/widgets/bottom_sheet.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
 import 'package:wealth/ui/widgets/avatar_container.dart';
 import 'package:wealth/ui/widgets/messenger.dart';
@@ -25,7 +26,7 @@ class RegisterBody extends StatelessWidget {
             key: _formKey,
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              const AvatarSlide(),
+              const AvatarPane(),
               RoundedInputField(
                 hintText: "First Name",
                 onChanged: (value) {
@@ -108,14 +109,14 @@ class RegisterBody extends StatelessWidget {
   }
 }
 
-class AvatarSlide extends StatefulWidget {
-  const AvatarSlide({super.key});
+class AvatarPane extends StatefulWidget {
+  const AvatarPane({super.key});
 
   @override
-  State<AvatarSlide> createState() => _AvatarSlideState();
+  State<AvatarPane> createState() => _AvatarPaneState();
 }
 
-class _AvatarSlideState extends State<AvatarSlide> {
+class _AvatarPaneState extends State<AvatarPane> {
   final _avatarPaths = [
     "assets/icons/s0.png",
     "assets/icons/s1.png",
@@ -124,17 +125,15 @@ class _AvatarSlideState extends State<AvatarSlide> {
     "assets/icons/s4.png",
     "assets/icons/s5.png",
     "assets/icons/s6.png",
-    "assets/icons/s0.png",
   ];
   final List<String> _labels = [
-    "",
+    "Nothing",
     "Saver",
     "Investor",
     "Frugal",
     "Tightwad",
     "Thrifty",
     "Budgetor",
-    "",
   ];
 
 //   Thrifty – Someone who saves and spends money carefully.
@@ -146,84 +145,94 @@ class _AvatarSlideState extends State<AvatarSlide> {
 // Penny-pincher – A person who is very careful with their money and tries to save as much as possible.
 // Budgeter – A person who creates and follows a budget to manage their money.
 
-  late ScrollController _scrollController;
-  String _middleAvatarPath = "assets/icons/s1.png";
-  String _middleAvatarLabel = "Saver";
+  late String _middleAvatarPath;
+  late String _middleAvatarLabel;
 
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      final width = _scrollController.position.maxScrollExtent / 5;
-      final currentPos = _scrollController.offset;
-      final avatarWidth = _scrollController.position.viewportDimension;
-      final middleAvatarIndex =
-          ((currentPos + avatarWidth / 2) / width).floor();
-
-      if (middleAvatarIndex != 8) {
-        setState(() {
-          _middleAvatarPath = _avatarPaths[middleAvatarIndex];
-          _middleAvatarLabel = _labels[middleAvatarIndex];
-        });
-      }
-    });
+    _middleAvatarPath = _avatarPaths[0];
+    _middleAvatarLabel = "Choose Avatar";
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            height: size.height * 0.2,
-            margin: const EdgeInsets.symmetric(horizontal: 50),
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              controller: _scrollController,
-              itemCount: _avatarPaths.length,
-              itemBuilder: (_, index) => AvatarContainer(
+      margin: const EdgeInsets.symmetric(vertical: 3),
+      child: InkWell(
+        onTap: () {
+          BottomSheetLayout.showModalSheet(
+            context: context,
+            maxHeight: size.height * 0.3,
+            header: "Choose Avatar",
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              height: size.height * 0.3,
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _avatarPaths.length,
+                  itemBuilder: (_, index) => Avatar(
+                      onTap: () {
+                        setState(() {
+                          _middleAvatarPath = _avatarPaths[index];
+                          _middleAvatarLabel = _labels[index];
+                        });
+                      },
+                      assetName: _avatarPaths[index],
+                      label: _labels[index])),
+            ),
+          );
+        },
+        child: Avatar(
+          assetName: _middleAvatarPath,
+          label: _middleAvatarLabel,
+        ),
+      ),
+    );
+  }
+}
+
+class Avatar extends StatelessWidget {
+  const Avatar(
+      {super.key, required this.assetName, required this.label, this.onTap});
+  final String assetName;
+  final String label;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        width: size.width * 0.3,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: kPrimaryColor),
+                shape: BoxShape.circle,
+              ),
+              child: AvatarContainer(
                 radius: size.height * 0.05,
                 scale: size.height * 0.01,
-                assetName: _avatarPaths[index],
+                assetName: assetName,
                 color: Colors.transparent,
               ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.3,
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: kPrimaryColor),
-                    shape: BoxShape.circle,
-                  ),
-                  child: AvatarContainer(
-                    radius: size.height * 0.05,
-                    scale: size.height * 0.01,
-                    assetName: _middleAvatarPath,
-                    color: Colors.transparent,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Text(
-                    _middleAvatarLabel,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Text(
+                label,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

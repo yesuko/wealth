@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
 import 'package:wealth/ui/widgets/avatar_container.dart';
@@ -107,8 +108,46 @@ class RegisterBody extends StatelessWidget {
   }
 }
 
-class AvatarSlide extends StatelessWidget {
+class AvatarSlide extends StatefulWidget {
   const AvatarSlide({super.key});
+
+  @override
+  State<AvatarSlide> createState() => _AvatarSlideState();
+}
+
+class _AvatarSlideState extends State<AvatarSlide> {
+  final List<Color> _colors = [
+    Colors.transparent,
+    Colors.yellow,
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.grey,
+    Colors.transparent,
+  ];
+
+  late ScrollController _scrollController;
+  Color _middleAvatarColor = Colors.yellow;
+  //String _middleAvatarLabel =
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      final width = _scrollController.position.maxScrollExtent / 4;
+      final currentPos = _scrollController.offset;
+      final avatarWidth = _scrollController.position.viewportDimension;
+      final middleAvatarIndex =
+          ((currentPos + avatarWidth / 2) / width).floor();
+
+      if (middleAvatarIndex != 6) {
+        setState(() {
+          _middleAvatarColor = _colors[middleAvatarIndex];
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,30 +158,16 @@ class AvatarSlide extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
+            height: size.height * 0.2,
             margin: const EdgeInsets.symmetric(horizontal: 50),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
+            child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  AvatarContainer(
-                    radius: size.height * 0.05,
-                    color: Colors.red,
-                  ),
-                  AvatarContainer(
-                    radius: size.height * 0.05,
-                    color: Colors.green,
-                  ),
-                  AvatarContainer(
-                    radius: size.height * 0.05,
-                    color: Colors.blue,
-                  ),
-                  AvatarContainer(
-                    radius: size.height * 0.05,
-                    color: Colors.purple,
-                  ),
-                  AvatarContainer(radius: size.height * 0.05),
-                ],
+              scrollDirection: Axis.horizontal,
+              controller: _scrollController,
+              itemCount: _colors.length,
+              itemBuilder: (_, index) => AvatarContainer(
+                radius: size.height * 0.05,
+                color: _colors[index],
               ),
             ),
           ),
@@ -151,9 +176,10 @@ class AvatarSlide extends StatelessWidget {
             height: size.height * 0.15,
             width: size.width * 0.3,
             decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(color: kPrimaryColor),
-                shape: BoxShape.circle),
+              color: _middleAvatarColor,
+              border: Border.all(color: kPrimaryColor),
+              shape: BoxShape.circle,
+            ),
           )
         ],
       ),

@@ -117,7 +117,6 @@ class AvatarPane extends StatefulWidget {
 
 class _AvatarPaneState extends State<AvatarPane> {
   final _avatarPaths = [
-    "assets/icons/s0.png",
     "assets/icons/s1.png",
     "assets/icons/s2.png",
     "assets/icons/s3.png",
@@ -126,7 +125,6 @@ class _AvatarPaneState extends State<AvatarPane> {
     "assets/icons/s6.png",
   ];
   final List<String> _labels = [
-    "Nothing",
     "Saver",
     "Investor",
     "Frugal",
@@ -151,7 +149,7 @@ class _AvatarPaneState extends State<AvatarPane> {
   void initState() {
     super.initState();
     _middleAvatarPath = _avatarPaths[0];
-    _middleAvatarLabel = "Choose Avatar";
+    _middleAvatarLabel = _labels[0];
   }
 
   @override

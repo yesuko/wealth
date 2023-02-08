@@ -161,25 +161,25 @@ class _AvatarPaneState extends State<AvatarPane> {
         onTap: () {
           BottomSheetLayout.showModalSheet(
             context: context,
-            maxHeight: size.height * 0.3,
+            maxHeight: size.height * 0.25,
             header: "Choose Avatar",
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              height: size.height * 0.3,
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _avatarPaths.length,
-                  itemBuilder: (_, index) => Avatar(
-                      onTap: () {
-                        setState(() {
-                          _middleAvatarPath = _avatarPaths[index];
-                          _middleAvatarLabel = _labels[index];
-                        });
-                      },
-                      assetName: _avatarPaths[index],
-                      label: _labels[index])),
-            ),
+            child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: _avatarPaths.length,
+                itemBuilder: (context, index) => Avatar(
+                    onTap: () {
+                      setState(() {
+                        _middleAvatarPath = _avatarPaths[index];
+                        _middleAvatarLabel = _labels[index];
+                      });
+                      Navigator.pop(context);
+
+                      Messenger.showSnackBar(
+                          message: "Avatar Updated", context: context);
+                    },
+                    assetName: _avatarPaths[index],
+                    label: _labels[index])),
           );
         },
         child: Avatar(
@@ -207,10 +207,11 @@ class Avatar extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 10),
         width: size.width * 0.3,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.transparent,
                 border: Border.all(color: kPrimaryColor),
                 shape: BoxShape.circle,
               ),
@@ -222,7 +223,7 @@ class Avatar extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(2.0),
+              padding: const EdgeInsets.all(3.0),
               child: Text(
                 label,
                 style: const TextStyle(fontWeight: FontWeight.bold),

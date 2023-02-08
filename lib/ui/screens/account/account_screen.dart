@@ -16,6 +16,7 @@ class AccountScreen extends StatelessWidget {
         centerTitle: false,
         actions: [
           AvatarContainer(
+            assetName: "assets/icons/s1.png",
             radius: 20,
           )
         ],

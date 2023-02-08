@@ -116,34 +116,55 @@ class AvatarSlide extends StatefulWidget {
 }
 
 class _AvatarSlideState extends State<AvatarSlide> {
-  final List<Color> _colors = [
-    Colors.transparent,
-    Colors.yellow,
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.grey,
-    Colors.transparent,
+  final _avatarPaths = [
+    "assets/icons/s0.png",
+    "assets/icons/s1.png",
+    "assets/icons/s2.png",
+    "assets/icons/s3.png",
+    "assets/icons/s4.png",
+    "assets/icons/s5.png",
+    "assets/icons/s6.png",
+    "assets/icons/s0.png",
+  ];
+  final List<String> _labels = [
+    "",
+    "Saver",
+    "Investor",
+    "Frugal",
+    "Tightwad",
+    "Thrifty",
+    "Budgetor",
+    "",
   ];
 
+//   Thrifty – Someone who saves and spends money carefully.
+// Frugal – A person who is economical with money and avoids waste.
+// Tightwad – A person who is excessively unwilling to spend money.
+// Hoarder – Someone who saves and accumulates items, including money, beyond what is necessary.
+// Saver – A person who regularly saves money.
+// Investor – A person who puts money into investments with the expectation of making a profit.
+// Penny-pincher – A person who is very careful with their money and tries to save as much as possible.
+// Budgeter – A person who creates and follows a budget to manage their money.
+
   late ScrollController _scrollController;
-  Color _middleAvatarColor = Colors.yellow;
-  //String _middleAvatarLabel =
+  String _middleAvatarPath = "assets/icons/s1.png";
+  String _middleAvatarLabel = "Saver";
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(() {
-      final width = _scrollController.position.maxScrollExtent / 4;
+      final width = _scrollController.position.maxScrollExtent / 5;
       final currentPos = _scrollController.offset;
       final avatarWidth = _scrollController.position.viewportDimension;
       final middleAvatarIndex =
           ((currentPos + avatarWidth / 2) / width).floor();
 
-      if (middleAvatarIndex != 6) {
+      if (middleAvatarIndex != 8) {
         setState(() {
-          _middleAvatarColor = _colors[middleAvatarIndex];
+          _middleAvatarPath = _avatarPaths[middleAvatarIndex];
+          _middleAvatarLabel = _labels[middleAvatarIndex];
         });
       }
     });
@@ -158,27 +179,48 @@ class _AvatarSlideState extends State<AvatarSlide> {
         alignment: Alignment.center,
         children: [
           Container(
+            padding: const EdgeInsets.only(bottom: 20.0),
             height: size.height * 0.2,
             margin: const EdgeInsets.symmetric(horizontal: 50),
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               controller: _scrollController,
-              itemCount: _colors.length,
+              itemCount: _avatarPaths.length,
               itemBuilder: (_, index) => AvatarContainer(
                 radius: size.height * 0.05,
-                color: _colors[index],
+                scale: size.height * 0.01,
+                assetName: _avatarPaths[index],
+                color: Colors.transparent,
               ),
             ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
-            height: size.height * 0.15,
             width: size.width * 0.3,
-            decoration: BoxDecoration(
-              color: _middleAvatarColor,
-              border: Border.all(color: kPrimaryColor),
-              shape: BoxShape.circle,
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: kPrimaryColor),
+                    shape: BoxShape.circle,
+                  ),
+                  child: AvatarContainer(
+                    radius: size.height * 0.05,
+                    scale: size.height * 0.01,
+                    assetName: _middleAvatarPath,
+                    color: Colors.transparent,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Text(
+                    _middleAvatarLabel,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           )
         ],

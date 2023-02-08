@@ -6,6 +6,7 @@ import 'package:wealth/ui/widgets/messenger.dart';
 import 'package:wealth/ui/widgets/rounded_button.dart';
 import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/rounded_password_field.dart';
+import 'package:wealth/util.dart';
 
 class RegisterBody extends StatelessWidget {
   RegisterBody({super.key});
@@ -21,8 +22,9 @@ class RegisterBody extends StatelessWidget {
         child: Center(
           child: Form(
             key: _formKey,
-            child: Column(children: [
-              AvatarContainer(radius: size.height * 0.07),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              AvatarSlide(),
               RoundedInputField(
                 hintText: "First Name",
                 onChanged: (value) {
@@ -100,6 +102,60 @@ class RegisterBody extends StatelessWidget {
             ]),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AvatarSlide extends StatelessWidget {
+  const AvatarSlide({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 50),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Row(
+                children: [
+                  AvatarContainer(
+                    radius: size.height * 0.05,
+                    color: Colors.red,
+                  ),
+                  AvatarContainer(
+                    radius: size.height * 0.05,
+                    color: Colors.green,
+                  ),
+                  AvatarContainer(
+                    radius: size.height * 0.05,
+                    color: Colors.blue,
+                  ),
+                  AvatarContainer(
+                    radius: size.height * 0.05,
+                    color: Colors.purple,
+                  ),
+                  AvatarContainer(radius: size.height * 0.05),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            height: size.height * 0.15,
+            width: size.width * 0.3,
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(color: kPrimaryColor),
+                shape: BoxShape.circle),
+          )
+        ],
       ),
     );
   }

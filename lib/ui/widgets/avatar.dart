@@ -43,14 +43,14 @@ class Avatar extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                border: Border.all(color: kPrimaryColor),
+                border: Border.all(color: color??kPrimaryColor),
                 shape: BoxShape.circle,
               ),
               child: Container(
                 margin:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: CircleAvatar(
-                  backgroundColor: color ?? Colors.transparent,
+                  backgroundColor:  Colors.transparent,
                   radius: radius,
                   child: Image.asset(
                     assetName,

@@ -18,12 +18,13 @@ class AccountScreen extends StatelessWidget {
         actions: [
           Avatar(
             assetName: "assets/icons/s1.png",
-            radius: size.height * 0.011,
+            radius: size.height * 0.008,
             scale: size.height * 0.005,
             label: '',
             marginVertical: 3,
             marginHorizontal: 10,
             crossAxisAlignment: CrossAxisAlignment.end,
+            color: kPrimaryColorAccent,
           )
         ],
       ),

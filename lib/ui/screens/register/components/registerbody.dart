@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
-import 'package:wealth/ui/widgets/avatar_container.dart';
+import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/bottom_sheet.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
 import 'package:wealth/ui/widgets/messenger.dart';
@@ -168,68 +168,28 @@ class _AvatarPaneState extends State<AvatarPane> {
                 scrollDirection: Axis.horizontal,
                 itemCount: _avatarPaths.length,
                 itemBuilder: (context, index) => Avatar(
-                    onTap: () {
-                      setState(() {
-                        _middleAvatarPath = _avatarPaths[index];
-                        _middleAvatarLabel = _labels[index];
-                      });
-                      Navigator.pop(context);
+                      onTap: () {
+                        setState(() {
+                          _middleAvatarPath = _avatarPaths[index];
+                          _middleAvatarLabel = _labels[index];
+                        });
+                        Navigator.pop(context);
 
-                      Messenger.showSnackBar(
-                          message: "Avatar Updated", context: context);
-                    },
-                    assetName: _avatarPaths[index],
-                    label: _labels[index])),
+                        Messenger.showSnackBar(
+                            message: "Avatar Updated", context: context);
+                      },
+                      assetName: _avatarPaths[index],
+                      label: _labels[index],
+                      radius: size.height * 0.05,
+                      scale: size.height * 0.01,
+                    )),
           );
         },
         child: Avatar(
           assetName: _middleAvatarPath,
           label: _middleAvatarLabel,
-        ),
-      ),
-    );
-  }
-}
-
-class Avatar extends StatelessWidget {
-  const Avatar(
-      {super.key, required this.assetName, required this.label, this.onTap});
-  final String assetName;
-  final String label;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        width: size.width * 0.3,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(color: kPrimaryColor),
-                shape: BoxShape.circle,
-              ),
-              child: AvatarContainer(
-                radius: size.height * 0.05,
-                scale: size.height * 0.01,
-                assetName: assetName,
-                color: Colors.transparent,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Text(
-                label,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+          radius: size.height * 0.05,
+          scale: size.height * 0.01,
         ),
       ),
     );

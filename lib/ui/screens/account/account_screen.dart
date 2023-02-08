@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wealth/ui/widgets/avatar_container.dart';
+import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/top_bar.dart';
 import 'package:wealth/util.dart';
 
@@ -10,18 +10,24 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
       appBar: TopBar(
         title: kAccountScreenTitle,
         centerTitle: false,
         actions: [
-          AvatarContainer(
+          Avatar(
             assetName: "assets/icons/s1.png",
-            radius: 20,
+            radius: size.height * 0.011,
+            scale: size.height * 0.005,
+            label: '',
+            marginVertical: 3,
+            marginHorizontal: 10,
+            crossAxisAlignment: CrossAxisAlignment.end,
           )
         ],
       ),
-      body: AccountBody(),
+      body: const AccountBody(),
     );
   }
 }

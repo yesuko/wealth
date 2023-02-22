@@ -5,7 +5,6 @@ import 'package:wealth/logic/managers/income_source_manager.dart';
 import 'package:wealth/ui/screens/pocket/components/income_source_sheet.dart';
 import 'package:wealth/ui/screens/pocket/components/pocket_activity.dart';
 import 'package:wealth/ui/screens/pocket/components/pocket_card.dart';
-import 'package:wealth/ui/screens/pocket/components/pocket_income.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 import 'package:wealth/util.dart';
 

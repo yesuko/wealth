@@ -163,7 +163,7 @@ class IncomeSourceBottomSheet {
                       .map((e) => double.tryParse(e.text) ?? 0)
                       .reduce((value, element) => value + element);
 
-                  if (totalPercentage > 100) {
+                  if (totalPercentage > 100 || totalPercentage < 100) {
                     Messenger.showSnackBar(
                       message: "The sum of rates must be equal to 100%",
                       context: context,
@@ -199,8 +199,6 @@ class IncomeSourceBottomSheet {
   }
 }
 
-
-
 class IncomeSourceTile extends StatelessWidget {
   const IncomeSourceTile({
     super.key,
@@ -222,7 +220,6 @@ class IncomeSourceTile extends StatelessWidget {
     );
   }
 }
-
 
 class RateTile extends StatefulWidget {
   const RateTile(

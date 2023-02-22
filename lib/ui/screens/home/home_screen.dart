@@ -6,6 +6,7 @@ import 'package:wealth/ui/screens/home/components/homebottom.dart';
 import 'package:wealth/ui/screens/investment/investments_screen.dart';
 import 'package:wealth/ui/screens/pocket/pocket_screen.dart';
 import 'package:wealth/ui/screens/saving/savings_screen.dart';
+import 'package:wealth/util.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,25 +27,25 @@ class HomeScreen extends StatelessWidget {
     /// build a map of bottom navigation item and their respective
     /// screens
     return {
-      const PocketScreen(): const BottomNavigationBarItem(
-        icon: Icon(Icons.wallet_outlined),
-        label: "Pockets",
+      const PocketScreen(): BottomNavigationBarItem(
+        icon: const Icon(Icons.wallet_outlined),
+        label: Screens.Pockets.name,
       ),
-      const SavingsScreen(): const BottomNavigationBarItem(
-        icon: Icon(Icons.savings_outlined),
-        label: "Savings",
+      const SavingsScreen(): BottomNavigationBarItem(
+        icon: const Icon(Icons.savings_outlined),
+        label: Screens.Savings.name,
       ),
-      const InvestmentsScreen(): const BottomNavigationBarItem(
-        icon: Icon(Icons.account_balance_outlined),
-        label: "Investments",
+      const InvestmentsScreen(): BottomNavigationBarItem(
+        icon: const Icon(Icons.account_balance_outlined),
+        label: Screens.Investments.name,
       ),
-      const EmergencyScreen(): const BottomNavigationBarItem(
-        icon: Icon(Icons.payments_outlined),
-        label: "Emergency",
+      const EmergencyScreen(): BottomNavigationBarItem(
+        icon: const Icon(Icons.payments_outlined),
+        label: Screens.Emergency.name,
       ),
-      const AccountScreen(): const BottomNavigationBarItem(
-        icon: Icon(Icons.settings_outlined),
-        label: "Settings",
+      const AccountScreen(): BottomNavigationBarItem(
+        icon: const Icon(Icons.account_circle_outlined),
+        label: Screens.Account.name,
       ),
     };
   }

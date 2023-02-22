@@ -30,6 +30,15 @@ enum Accounts {
   Emergency,
 }
 
+// Screens
+enum Screens{
+  Pockets,
+  Savings,
+  Investments,
+  Emergency,
+  Account,
+}
+
 // colors
 const emergencyColor = Color(0xFFBA68C8);
 const emergencyColorDeep = Color(0XFF662a4a);

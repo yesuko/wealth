@@ -4,6 +4,7 @@ import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
 import 'package:wealth/ui/screens/home/components/home_provider.dart';
 
+// This class handles all providers and recieves MaterialApp(WidgetApp) as child
 class ProviderSetting extends StatelessWidget {
   const ProviderSetting({super.key, required this.child});
   final Widget child;

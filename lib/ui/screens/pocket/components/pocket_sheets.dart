@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
 import 'package:wealth/logic/models/income_source_model.dart';
+import 'package:wealth/ui/screens/pocket/components/pocket_controller.dart';
 import 'package:wealth/ui/ui_validator.dart';
 import 'package:wealth/ui/widgets/bottom_sheet.dart';
 import 'package:wealth/ui/widgets/messenger.dart';
@@ -39,40 +40,31 @@ class PocketBottomSheet {
                 return UIValidator.validateName(name);
               },
             ),
-            RoundedInputField(
-              iconData: Icons.money,
-              hintText: "Enter amount",
-              initialValue: amount,
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                amount = value;
-              },
-              validator: (String? val) {
-                return UIValidator.validateAmount(amount);
-              },
-            ),
+            // RoundedInputField(
+            //   iconData: Icons.money,
+            //   hintText: "Enter amount",
+            //   initialValue: amount,
+            //   keyboardType: TextInputType.number,
+            //   onChanged: (value) {
+            //     amount = value;
+            //   },
+            //   validator: (String? val) {
+            //     return UIValidator.validateAmount(amount);
+            //   },
+            // ),
             RoundedButton(
-              text: "Add",
+              text: "Add amount",
               press: () {
                 if (formKey.currentState!.validate()) {
                   if (name != null && amount != null) {
-                    context.read<IncomeSourceManager>().addIncomeSource(
-                          IncomeSourceModel.withAttibutes(
-                            name: name!,
-                            createdOn: DateTime.now(),
-                            income: double.parse(amount!),
-                          ),
-                        );
-
-                    context
-                        .read<IncomeSourceManager>()
-                        .calculateAndUpdateTotalIncome();
-
-                    context.read<SavingsAccountManager>().updateBalance();
-
-                    context.read<InvestmentAccountManager>().updateBalance();
-
-                    context.read<EmergencyAccountManager>().updateBalance();
+                    PocketController.addNewIncomeSource(
+                      context,
+                      IncomeSourceModel.withAttibutes(
+                        name: name!,
+                        createdOn: DateTime.now(),
+                        income: double.parse(amount!),
+                      ),
+                    );
 
                     Messenger.showSnackBar(
                       message: "$name added to Income Sources",

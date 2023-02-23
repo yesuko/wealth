@@ -31,7 +31,7 @@ enum Accounts {
 }
 
 // Screens
-enum Screens{
+enum Screens {
   Pockets,
   Savings,
   Investments,
@@ -59,7 +59,6 @@ const kDefaultButtonColor = Colors.grey;
 const kDefaultFontColor = Colors.black;
 const kSecondaryFontColor = Colors.black54;
 
-
 //light gold=#f4df56
 //deep gold = #ddb337
 //light blue = #38afac
@@ -70,3 +69,10 @@ const kSecondaryFontColor = Colors.black54;
 // brown-skin tone = #af6d45
 //deep brown-close to purple = #574447
 
+// class StringEng {
+//   static const String pockets = "Pockets";
+//   static const String savings = "Savings";
+//   static const String investments = "Investmenst";
+//   static const String emergency = "Emergency";
+//   static const String account = "Account";
+// }

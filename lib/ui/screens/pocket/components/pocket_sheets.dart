@@ -12,7 +12,7 @@ import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/tile.dart';
 import 'package:wealth/util.dart';
 
-class IncomeSourceBottomSheet {
+class PocketBottomSheet {
   static showAddIncomeSourceSheet(
     BuildContext context,
   ) {

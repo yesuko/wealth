@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
-import 'package:wealth/ui/screens/pocket/components/income_source_sheet.dart';
+import 'package:wealth/ui/screens/pocket/components/pocket_sheets.dart';
 import 'package:wealth/ui/screens/pocket/components/pocket_activity.dart';
 import 'package:wealth/ui/screens/pocket/components/pocket_card.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
@@ -79,7 +79,7 @@ class PocketIncome extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: InkWell(
               onTap: () {
-                IncomeSourceBottomSheet.showViewSourceSheet(context);
+                PocketBottomSheet.showViewSourceSheet(context);
               },
               child: const Text.rich(
                 TextSpan(
@@ -136,7 +136,6 @@ class PocketAccount extends StatelessWidget {
   }
 }
 
-
 class PocketActivities extends StatelessWidget {
   const PocketActivities({
     Key? key,
@@ -154,22 +153,21 @@ class PocketActivities extends StatelessWidget {
             title: "Add Income Source",
             icon: Image.asset("assets/icons/gold.png"),
             onTap: () {
-              IncomeSourceBottomSheet.showAddIncomeSourceSheet(context);
+              PocketBottomSheet.showAddIncomeSourceSheet(context);
             },
           ),
           PocketActivity(
             title: "Add Income",
             icon: Image.asset("assets/icons/add_income_dark.png"),
             onTap: () {
-              IncomeSourceBottomSheet.showListOfSourecesAndUpdateIncome(
-                  context);
+              PocketBottomSheet.showListOfSourecesAndUpdateIncome(context);
             },
           ),
           PocketActivity(
             title: "Set Allocation",
             icon: Image.asset("assets/icons/rate.png"),
             onTap: () {
-              IncomeSourceBottomSheet.showAccountsAndSetRateAllocation(context);
+              PocketBottomSheet.showAccountsAndSetRateAllocation(context);
             },
           ),
           PocketActivity(
@@ -182,4 +180,3 @@ class PocketActivities extends StatelessWidget {
     );
   }
 }
-

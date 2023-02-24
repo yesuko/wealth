@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/widgets/messenger.dart';
-
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    const bool flag = true;
-
-    if (flag == true) {
-      return const UpdateAppScreen();
-    } else {
-      return const LoginScreen();
-    }
-  }
-}
 
 class UpdateAppScreen extends StatefulWidget {
   const UpdateAppScreen({super.key});

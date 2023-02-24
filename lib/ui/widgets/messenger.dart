@@ -24,30 +24,23 @@ class Messenger {
   }
 
   static Future<dynamic> showAlertDialog({
-    required Function()? leftButtonOnTap,
-    required Function()? rightButtonOnTap,
     required String message,
-    required String leftButtonLabel,
-    required String rightButtonLabel,
+    required List<Widget> actions,
+    MainAxisAlignment? actionsAlignment,
     required BuildContext context,
   }) {
     return showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AlertDialog(
         content: Text(
           message,
           textAlign: TextAlign.justify,
         ),
-        actions: [
-          TextButton(
-            onPressed: leftButtonOnTap,
-            child: Text(leftButtonLabel),
-          ),
-          TextButton(
-            onPressed: rightButtonOnTap,
-            child: Text(rightButtonLabel),
-          ),
-        ],
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        actions: actions,
+        actionsAlignment: actionsAlignment,
       ),
     );
   }

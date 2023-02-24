@@ -1,7 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:wealth/settings/config_setting.dart';
 import 'package:wealth/settings/startapp_setting.dart';
 
-void main() {
+void main() async {
+  // initialize all firebase dependencies
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  //setting up for using EMULATOR, LOCAL DEVICE OR INTERNET
+  await ConfigurationSetting.config();
   runApp(const StartAppSetting());
 }
 

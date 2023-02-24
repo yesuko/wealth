@@ -8,7 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  //setting up for using EMULATOR, LOCAL DEVICE OR INTERNET
+  //setting up for using EMULATOR OR INTERNET
   await ConfigurationSetting.config();
   runApp(const StartAppSetting());
 }

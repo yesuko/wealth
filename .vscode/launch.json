@@ -11,7 +11,7 @@
             "flutterMode": "debug",
             "toolArgs": [
                 "--dart-define",
-                "USE_FIREBASE_EMU=true",
+                "USE_FIREBASE_EMU=false",
             ]
         },
         {

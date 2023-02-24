@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "573692471044",
-    "project_id": "wealth-b41b3",
-    "storage_bucket": "wealth-b41b3.appspot.com"
+    "project_number": "51618421676",
+    "project_id": "wealth-adf46",
+    "storage_bucket": "wealth-adf46.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:573692471044:android:b34a97ac786add95a5d251",
+        "mobilesdk_app_id": "1:51618421676:android:b10822c909c77eef56f809",
         "android_client_info": {
-          "package_name": "dev.assankum.wealth"
+          "package_name": "com.assankumdev.wealth"
         }
       },
       "oauth_client": [
         {
-          "client_id": "573692471044-jnn8h10dv4f1r6t9mik3plmrlh54lvq4.apps.googleusercontent.com",
+          "client_id": "51618421676-qtmknj9pp9lq7elncsgro13fou2bmt63.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB8VB8jch8zv6Xmh2v46WoexxIbV7qzsvI"
+          "current_key": "AIzaSyCyBPwZDFApJQtbTtCnlo5Dka5SjYgQyrU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "573692471044-jnn8h10dv4f1r6t9mik3plmrlh54lvq4.apps.googleusercontent.com",
+              "client_id": "51618421676-qtmknj9pp9lq7elncsgro13fou2bmt63.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,5 +1,5 @@
 
-import 'package:wealth/settings/firebase_config.dart';
+import 'package:wealth/settings/config/firebase_config.dart';
 
 class ConfigurationSetting {
   static Future<void> config() async {

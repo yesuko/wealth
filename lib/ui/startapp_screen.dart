@@ -7,7 +7,7 @@ class StartAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bool flag = true;
+    const bool flag = false;
 
     if (flag == true) {
       return const UpdateAppScreen();

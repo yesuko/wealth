@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Messenger {
-  static dynamic showSnackBar({
-    required String message,
-    required BuildContext context,
-    int seconds = 2,
-    SnackBarAction? action,
-    SnackBarBehavior? behavior
-  }) {
+  static dynamic showSnackBar(
+      {required String message,
+      required BuildContext context,
+      int seconds = 2,
+      SnackBarAction? action,
+      SnackBarBehavior? behavior}) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 3,
@@ -25,11 +24,11 @@ class Messenger {
   }
 
   static Future<dynamic> showAlertDialog({
-    required Function exitAction,
-    required Function proceedAction,
+    required Function()? leftButtonOnTap,
+    required Function()? rightButtonOnTap,
     required String message,
-    required String exitLabel,
-    required String proceedLabel,
+    required String leftButtonLabel,
+    required String rightButtonLabel,
     required BuildContext context,
   }) {
     return showDialog(
@@ -41,12 +40,12 @@ class Messenger {
         ),
         actions: [
           TextButton(
-            onPressed: () => exitAction(),
-            child: Text(exitLabel),
+            onPressed: leftButtonOnTap,
+            child: Text(leftButtonLabel),
           ),
           TextButton(
-            onPressed: () => proceedAction(),
-            child: Text(proceedLabel),
+            onPressed: rightButtonOnTap,
+            child: Text(rightButtonLabel),
           ),
         ],
       ),

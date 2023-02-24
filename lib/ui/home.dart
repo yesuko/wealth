@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wealth/test.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 
 class Home extends StatelessWidget {
@@ -6,6 +7,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return const MyApp();
     return const LoginScreen();
   }
 }

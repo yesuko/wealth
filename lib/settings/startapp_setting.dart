@@ -3,8 +3,7 @@ import 'package:wealth/settings/provider_setting.dart';
 import 'package:wealth/ui/home.dart';
 import 'package:wealth/util.dart';
 
-
-// This class Calls the WidgetApp(MaterialApp), and handles the necessary configurations 
+// This class Calls the WidgetApp(MaterialApp), and handles the necessary configurations
 class StartAppSetting extends StatelessWidget {
   const StartAppSetting({super.key});
 
@@ -13,7 +12,6 @@ class StartAppSetting extends StatelessWidget {
     return ProviderSetting(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        
         title: kAppTitle,
         home: const Home(),
         theme: ThemeData(
@@ -23,3 +21,4 @@ class StartAppSetting extends StatelessWidget {
     );
   }
 }
+

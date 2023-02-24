@@ -2,9 +2,6 @@
 
 // import 'package:ussd_advanced/ussd_advanced.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
 
 // class MyApp extends StatefulWidget {
 //   const MyApp({Key? key}) : super(key: key);
@@ -66,31 +63,31 @@
 //                   },
 //                   child: const Text('norma\nrequest'),
 //                 ),
-//                 ElevatedButton(
-//                   onPressed: () async {
-//                     String? _res = await UssdAdvanced.sendAdvancedUssd(
-//                         code: _controller.text, subscriptionId: 1);
-//                     setState(() {
-//                       _response = _res;
-//                     });
-//                   },
-//                   child: const Text('single session\nrequest'),
-//                 ),
-//                 ElevatedButton(
-//                   onPressed: () async {
-//                     String? _res = await UssdAdvanced.multisessionUssd(
-//                         code: _controller.text, subscriptionId: 1);
-//                     setState(() {
-//                       _response = _res;
-//                     });
-//                     String? _res2 = await UssdAdvanced.sendMessage('0');
-//                     setState(() {
-//                       _response = _res2;
-//                     });
-//                     await UssdAdvanced.cancelSession();
-//                   },
-//                   child: const Text('multi session\nrequest'),
-//                 ),
+//                 // ElevatedButton(
+//                 //   onPressed: () async {
+//                 //     String? _res = await UssdAdvanced.sendAdvancedUssd(
+//                 //         code: _controller.text, subscriptionId: 1);
+//                 //     setState(() {
+//                 //       _response = _res;
+//                 //     });
+//                 //   },
+//                 //   child: const Text('single session\nrequest'),
+//                 // ),
+//                 // ElevatedButton(
+//                 //   onPressed: () async {
+//                 //     String? _res = await UssdAdvanced.multisessionUssd(
+//                 //         code: _controller.text, subscriptionId: 1);
+//                 //     setState(() {
+//                 //       _response = _res;
+//                 //     });
+//                 //     String? _res2 = await UssdAdvanced.sendMessage('0');
+//                 //     setState(() {
+//                 //       _response = _res2;
+//                 //     });
+//                 //     await UssdAdvanced.cancelSession();
+//                 //   },
+//                 //   child: const Text('multi session\nrequest'),
+//                 // ),
 //               ],
 //             )
 //           ],

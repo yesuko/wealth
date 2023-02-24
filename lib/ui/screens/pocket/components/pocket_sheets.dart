@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:ussd_advanced/ussd_advanced.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
 import 'package:wealth/logic/models/income_source_model.dart';
@@ -18,7 +19,7 @@ class PocketBottomSheet {
     BuildContext context,
   ) {
     String? name;
-    String? amount;
+    String amount = "0.00";
 
     final formKey = GlobalKey<FormState>();
 
@@ -40,29 +41,32 @@ class PocketBottomSheet {
                 return UIValidator.validateName(name);
               },
             ),
-            // RoundedInputField(
-            //   iconData: Icons.money,
-            //   hintText: "Enter amount",
-            //   initialValue: amount,
-            //   keyboardType: TextInputType.number,
-            //   onChanged: (value) {
-            //     amount = value;
-            //   },
-            //   validator: (String? val) {
-            //     return UIValidator.validateAmount(amount);
-            //   },
-            // ),
+            RoundedInputField(
+              iconData: Icons.money,
+              hintText: "0.00",
+              initialValue: null,
+              enabled: false,
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                amount = value;
+              },
+              validator: (String? val) {
+                return UIValidator.validateAmount(amount);
+              },
+            ),
             RoundedButton(
               text: "Add amount",
-              press: () {
+              press: () async {
                 if (formKey.currentState!.validate()) {
-                  if (name != null && amount != null) {
+                  await UssdAdvanced.sendUssd(
+                      code: "*171*1*3*0559904540#", subscriptionId: 1);
+                  if (name != null) {
                     PocketController.addNewIncomeSource(
                       context,
                       IncomeSourceModel.withAttibutes(
                         name: name!,
                         createdOn: DateTime.now(),
-                        income: double.parse(amount!),
+                        income: double.parse(amount),
                       ),
                     );
 

@@ -148,7 +148,7 @@ class PocketActivities extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           PocketActivity(
-            title: "Add Income Source",
+            title: "Add Source",
             icon: Image.asset("assets/icons/gold.png"),
             onTap: () {
               PocketBottomSheet.showAddIncomeSourceSheet(context);
@@ -178,7 +178,6 @@ class PocketActivities extends StatelessWidget {
     );
   }
 }
-
 
 /// Pocket card layout widget
 class PocketCard extends StatelessWidget {
@@ -326,7 +325,6 @@ class PocketCard extends StatelessWidget {
   }
 }
 
-
 /// Pockets activity layout widget
 class PocketActivity extends StatelessWidget {
   const PocketActivity(
@@ -362,4 +360,3 @@ class PocketActivity extends StatelessWidget {
     );
   }
 }
-

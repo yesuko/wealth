@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wealth/settings/provider_setting.dart';
-import 'package:wealth/ui/home.dart';
+import 'package:wealth/ui/startapp_screen.dart';
 import 'package:wealth/util.dart';
 
 // This class Calls the WidgetApp(MaterialApp), and handles the necessary configurations
@@ -13,7 +13,7 @@ class StartAppSetting extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: kAppTitle,
-        home: const Home(),
+        home: const StartAppScreen(),
         theme: ThemeData(
           colorSchemeSeed: Colors.amber[500],
         ),
@@ -21,4 +21,3 @@ class StartAppSetting extends StatelessWidget {
     );
   }
 }
-

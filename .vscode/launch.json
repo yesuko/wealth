@@ -5,13 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "wealth (local emulator)",
+            "name": "wealth (normal)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",
             "toolArgs": [
                 "--dart-define",
                 "USE_FIREBASE_EMU=false",
+            ]
+        },
+        {
+            "name": "wealth (local emulator)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "toolArgs": [
+                "--dart-define",
+                "USE_FIREBASE_EMU=true",
             ]
         },
         {
@@ -32,5 +42,3 @@
         }
     ]
 }
-
-

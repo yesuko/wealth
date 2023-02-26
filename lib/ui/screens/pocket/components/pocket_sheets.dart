@@ -58,8 +58,8 @@ class PocketBottomSheet {
               text: "Add amount",
               press: () async {
                 if (formKey.currentState!.validate()) {
-                  await UssdAdvanced.sendUssd(
-                      code: "*171*1*3*0559904540#", subscriptionId: 1);
+                  //await UssdAdvanced.sendUssd(
+                  //     code: "*171*1*3*0559904540#", subscriptionId: 1);
                   if (name != null) {
                     PocketController.addNewIncomeSource(
                       context,

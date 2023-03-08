@@ -6,11 +6,13 @@ import 'text_field_container.dart';
 class RoundedPasswordField extends StatefulWidget {
   final Function(String)? onChanged;
   final String? Function(String?) validator;
+  final Function(String)? onFieldSubmitted;
   final Function(String?)? onSaved;
   final String hintText;
   final double? scale;
 
   const RoundedPasswordField({
+    this.onFieldSubmitted,
     this.onChanged,
     this.hintText = "Password",
     required this.validator,
@@ -31,6 +33,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
     return TextFieldContainer(
       scale: widget.scale,
       child: TextFormField(
+        onFieldSubmitted: widget.onFieldSubmitted,
         obscureText: obscureText,
         onChanged: widget.onChanged,
         validator: widget.validator,

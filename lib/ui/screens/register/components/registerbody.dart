@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/bottom_sheet.dart';
@@ -8,10 +9,21 @@ import 'package:wealth/ui/widgets/rounded_button.dart';
 import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/rounded_password_field.dart';
 
+import '../../../../logic/managers/user_manager.dart';
+import '../../../../logic/models/user_model.dart';
+import '../../../ui_validator.dart';
+
 class RegisterBody extends StatelessWidget {
   RegisterBody({super.key});
 
   final _formKey = GlobalKey<FormState>();
+  late final String firstName,
+      lastName,
+      phoneNumber,
+      email,
+      password,
+      confirmPassword,
+      userType;
 
   @override
   Widget build(BuildContext context) {
@@ -27,67 +39,74 @@ class RegisterBody extends StatelessWidget {
               const AvatarPane(),
               RoundedInputField(
                 hintText: "First Name",
-                onChanged: (value) {
-                  //email = value;
+                // onChanged: (value) {
+                //   //email = value;
+                // },
+                onFieldSubmitted: (value) {
+                  firstName = value;
                 },
-                validator: (_) {
-                  return null; //ValidatorService.validateEmail(email);
+                validator: (value) {
+                  return UIValidator.validateName(value);
                 },
               ),
               RoundedInputField(
                 hintText: "Last Name",
-                onChanged: (value) {
-                  //email = value;
+                onFieldSubmitted: (value) {
+                  lastName = value;
                 },
-                validator: (_) {
-                  return null; //ValidatorService.validateEmail(email);
+                validator: (value) {
+                  return UIValidator.validateName(value);
                 },
               ),
               RoundedInputField(
                 iconData: Icons.phone_android_outlined,
                 hintText: "Mobile Wallet Number",
-                onChanged: (value) {
-                  //email = value;
+                onFieldSubmitted: (value) {
+                  phoneNumber = value;
                 },
-                validator: (_) {
-                  return null; //ValidatorService.validateEmail(email);
+                validator: (value) {
+                  return UIValidator.validatePhoneNumber(value);
                 },
               ),
               RoundedInputField(
                 iconData: Icons.email,
                 hintText: "Email",
-                onChanged: (value) {
-                  //email = value;
+                onFieldSubmitted: (value) {
+                  email = value;
                 },
-                validator: (_) {
-                  return null; //ValidatorService.validateEmail(email);
+                validator: (value) {
+                  return UIValidator.validateEmail(value);
                 },
               ),
               RoundedPasswordField(
-                onChanged: (value) {
-                  // password = value;
+                onFieldSubmitted: (value) {
+                  password = value;
                 },
-                validator: (_) {
-                  return null;
-                  //ValidatorService.validatePassword(password);
+                validator: (value) {
+                  return UIValidator.validatePassword(value);
                 },
               ),
               RoundedPasswordField(
                 hintText: "Confirm Password",
-                onChanged: (value) {
-                  // password = value;
+                onFieldSubmitted: (value) {
+                  confirmPassword = value;
                 },
-                validator: (_) {
-                  return null;
-                  //ValidatorService.validatePassword(password);
+                validator: (value) {
+                  return UIValidator.validateConfirmPassword(value, password);
                 },
               ),
               RoundedButton(
                   text: "SIGN UP",
-                  press: () {
-                    Messenger.showSnackBar(
-                        message: "Hurray! You are registered",
-                        context: context);
+                  press: () async {
+                    if (_formKey.currentState!.validate() == true) {
+                      context
+                          .read<UserManager>()
+                          .registerNewUser(UserModel.attributes(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, userType: userType, email: email), password);
+
+                      Messenger.showSnackBar(
+                          message: "Hurray $firstName! You are registered",
+                          context: context);
+                    }
                   }),
               LoginRegisterLink(
                   isLoginPage: false,

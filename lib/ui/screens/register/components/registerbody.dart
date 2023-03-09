@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
+import 'package:wealth/ui/screens/register/register_screen.dart';
 import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/bottom_sheet.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
@@ -12,22 +15,24 @@ import 'package:wealth/ui/widgets/rounded_password_field.dart';
 import '../../../../logic/managers/user_manager.dart';
 import '../../../../logic/models/user_model.dart';
 import '../../../ui_validator.dart';
+import '../../../widgets/loader.dart';
+
+// global variable shared by the register body and avarta pane to hole the type of user
+late String userType;
 
 class RegisterBody extends StatelessWidget {
   RegisterBody({super.key});
 
   final _formKey = GlobalKey<FormState>();
-  late final String firstName,
-      lastName,
-      phoneNumber,
-      email,
-      password,
-      confirmPassword,
-      userType;
 
   @override
   Widget build(BuildContext context) {
-    // final Size size = MediaQuery.of(context).size;
+    String firstName = "",
+        lastName = "",
+        phoneNumber = "",
+        email = "",
+        password = "";
+
     return SafeArea(
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -39,9 +44,6 @@ class RegisterBody extends StatelessWidget {
               const AvatarPane(),
               RoundedInputField(
                 hintText: "First Name",
-                // onChanged: (value) {
-                //   //email = value;
-                // },
                 onFieldSubmitted: (value) {
                   firstName = value;
                 },
@@ -60,6 +62,7 @@ class RegisterBody extends StatelessWidget {
               ),
               RoundedInputField(
                 iconData: Icons.phone_android_outlined,
+                keyboardType: TextInputType.phone,
                 hintText: "Mobile Wallet Number",
                 onFieldSubmitted: (value) {
                   phoneNumber = value;
@@ -70,6 +73,7 @@ class RegisterBody extends StatelessWidget {
               ),
               RoundedInputField(
                 iconData: Icons.email,
+                keyboardType: TextInputType.emailAddress,
                 hintText: "Email",
                 onFieldSubmitted: (value) {
                   email = value;
@@ -79,6 +83,7 @@ class RegisterBody extends StatelessWidget {
                 },
               ),
               RoundedPasswordField(
+                textInputAction: TextInputAction.next,
                 onFieldSubmitted: (value) {
                   password = value;
                 },
@@ -88,9 +93,6 @@ class RegisterBody extends StatelessWidget {
               ),
               RoundedPasswordField(
                 hintText: "Confirm Password",
-                onFieldSubmitted: (value) {
-                  confirmPassword = value;
-                },
                 validator: (value) {
                   return UIValidator.validateConfirmPassword(value, password);
                 },
@@ -99,13 +101,56 @@ class RegisterBody extends StatelessWidget {
                   text: "SIGN UP",
                   press: () async {
                     if (_formKey.currentState!.validate() == true) {
-                      context
-                          .read<UserManager>()
-                          .registerNewUser(UserModel.attributes(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, userType: userType, email: email), password);
+                      Widget widget = const RegisterScreen();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => FutureBuilder(
+                                future:
+                                    context.read<UserManager>().registerNewUser(
+                                          UserModel.attributes(
+                                              firstName: firstName,
+                                              lastName: lastName,
+                                              phoneNumber: phoneNumber,
+                                              userType: userType,
+                                              email: email),
+                                          password,
+                                        ),
+                                builder: (_, snap) {
+                                  if (snap.connectionState ==
+                                      ConnectionState.waiting) {
+                                    widget = const LoadingScreen();
+                                  } else if (snap.connectionState ==
+                                      ConnectionState.done) {
+                                    //message to confirm user has been registered
+                                    SchedulerBinding.instance
+                                        .addPostFrameCallback((timeStamp) {
+                                      Messenger.showSnackBar(
+                                          message:
+                                              "Hurray $firstName! You are registered",
+                                          context: context);
+                                    });
 
-                      Messenger.showSnackBar(
-                          message: "Hurray $firstName! You are registered",
-                          context: context);
+                                    // send user to home screen
+                                    widget = const HomeScreen();
+                                  } else if (snap.hasError) {
+                                    SchedulerBinding.instance
+                                        .addPostFrameCallback((timeStamp) {
+                                      Messenger.showSnackBar(
+                                          message: "message", context: context);
+                                    });
+                                  } else {
+                                    SchedulerBinding.instance
+                                        .addPostFrameCallback((timeStamp) {
+                                      Messenger.showSnackBar(
+                                          message: "Something went wrong",
+                                          context: context);
+                                    });
+                                  }
+
+                                  return widget;
+                                }),
+                          ));
                     }
                   }),
               LoginRegisterLink(
@@ -167,7 +212,7 @@ class _AvatarPaneState extends State<AvatarPane> {
   void initState() {
     super.initState();
     _middleAvatarPath = _avatarPaths[0];
-    _middleAvatarLabel = _labels[0];
+    userType = _middleAvatarLabel = _labels[0];
   }
 
   @override
@@ -189,7 +234,7 @@ class _AvatarPaneState extends State<AvatarPane> {
                       onTap: () {
                         setState(() {
                           _middleAvatarPath = _avatarPaths[index];
-                          _middleAvatarLabel = _labels[index];
+                          userType = _middleAvatarLabel = _labels[index];
                         });
                         Navigator.pop(context);
 

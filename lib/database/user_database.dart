@@ -49,11 +49,12 @@ class UserDatabase {
   static Future<void> _saveUserData(UserModel userModel) async {
     try {
       Map<String, dynamic> update = {
-        'uid': userModel.uid,
+        
         'firstName': userModel.firstName,
         'lastName': userModel.lastName,
         'userType': userModel.userType,
         'phoneNumber': userModel.phoneNumber,
+        'email': userModel.email
       };
 
       await FirebaseFirestore.instance

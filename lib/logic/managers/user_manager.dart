@@ -11,8 +11,7 @@ class UserManager extends ChangeNotifier {
     await fetchUserData();
   }
 
-  Future<void> signInUserWithEmailAndPassword(
-      String email, String password) async {
+  Future<void> signInUser(String email, String password) async {
     await UserDatabase.signInUsingEmailPassword(
         email: email, password: password);
     await fetchUserData();

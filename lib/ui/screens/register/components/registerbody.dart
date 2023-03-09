@@ -102,7 +102,6 @@ class RegisterBody extends StatelessWidget {
                   text: "SIGN UP",
                   press: () async {
                     if (_formKey.currentState!.validate() == true) {
-                      Widget widget = const RegisterScreen();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -241,21 +240,20 @@ class FutureSection extends StatelessWidget {
         builder: (_, snap) {
           Widget widget = const RegisterScreen();
           if (snap.connectionState == ConnectionState.done) {
-            if (snap.hasData) {
-              widget = const HomeScreen();
-              //message to confirm user has been registered
-              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-                Messenger.showSnackBar(
-                    message: "Hurray! You are registered", context: context);
-              });
-
-              // send user to home screen
-            } else if (snap.hasError) {
+            if (snap.hasError) {
               SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
                 var error = snap.error as UserDataException;
 
                 Messenger.showSnackBar(
                     message: error.errorMessage, context: context);
+              });
+            } else {
+              // send user to home screen
+              widget = const HomeScreen();
+              //message to confirm user has been registered
+              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+                Messenger.showSnackBar(
+                    message: "Hurray! You are registered", context: context);
               });
             }
           } else if (snap.connectionState == ConnectionState.waiting) {

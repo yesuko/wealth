@@ -109,15 +109,15 @@ class FutureSection extends StatelessWidget {
         builder: (_, snap) {
           Widget widget = const LoginScreen();
           if (snap.connectionState == ConnectionState.done) {
-            if (snap.hasData) {
-              widget = const HomeScreen();
-            } else if (snap.hasError) {
+            if (snap.hasError) {
               SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
                 var error = snap.error as UserDataException;
 
                 Messenger.showSnackBar(
                     message: error.errorMessage, context: context);
               });
+            } else {
+              widget = const HomeScreen();
             }
           } else if (snap.connectionState == ConnectionState.waiting) {
             widget = const LoadingScreen();

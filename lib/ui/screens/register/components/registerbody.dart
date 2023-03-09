@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:wealth/logic/models/exceptions.dart';
 import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/screens/register/register_screen.dart';
@@ -102,54 +103,21 @@ class RegisterBody extends StatelessWidget {
                   press: () async {
                     if (_formKey.currentState!.validate() == true) {
                       Widget widget = const RegisterScreen();
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => FutureBuilder(
-                                future:
-                                    context.read<UserManager>().registerNewUser(
-                                          UserModel.attributes(
-                                              firstName: firstName,
-                                              lastName: lastName,
-                                              phoneNumber: phoneNumber,
-                                              userType: userType,
-                                              email: email),
-                                          password,
-                                        ),
-                                builder: (_, snap) {
-                                  if (snap.connectionState ==
-                                      ConnectionState.waiting) {
-                                    widget = const LoadingScreen();
-                                  } else if (snap.connectionState ==
-                                      ConnectionState.done) {
-                                    //message to confirm user has been registered
-                                    SchedulerBinding.instance
-                                        .addPostFrameCallback((timeStamp) {
-                                      Messenger.showSnackBar(
-                                          message:
-                                              "Hurray $firstName! You are registered",
-                                          context: context);
-                                    });
-
-                                    // send user to home screen
-                                    widget = const HomeScreen();
-                                  } else if (snap.hasError) {
-                                    SchedulerBinding.instance
-                                        .addPostFrameCallback((timeStamp) {
-                                      Messenger.showSnackBar(
-                                          message: "message", context: context);
-                                    });
-                                  } else {
-                                    SchedulerBinding.instance
-                                        .addPostFrameCallback((timeStamp) {
-                                      Messenger.showSnackBar(
-                                          message: "Something went wrong",
-                                          context: context);
-                                    });
-                                  }
-
-                                  return widget;
-                                }),
+                            builder: (_) => FutureSection(
+                              future: context
+                                  .read<UserManager>()
+                                  .registerNewUser(
+                                      UserModel.attributes(
+                                          firstName: firstName,
+                                          lastName: lastName,
+                                          phoneNumber: phoneNumber,
+                                          userType: userType,
+                                          email: email),
+                                      password),
+                            ),
                           ));
                     }
                   }),
@@ -256,5 +224,50 @@ class _AvatarPaneState extends State<AvatarPane> {
         ),
       ),
     );
+  }
+}
+
+class FutureSection extends StatelessWidget {
+  const FutureSection({
+    super.key,
+    required this.future,
+  });
+
+  final Future future;
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: future,
+        builder: (_, snap) {
+          Widget widget = const RegisterScreen();
+          if (snap.connectionState == ConnectionState.done) {
+            if (snap.hasData) {
+              widget = const HomeScreen();
+              //message to confirm user has been registered
+              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+                Messenger.showSnackBar(
+                    message: "Hurray! You are registered", context: context);
+              });
+
+              // send user to home screen
+            } else if (snap.hasError) {
+              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+                var error = snap.error as UserDataException;
+
+                Messenger.showSnackBar(
+                    message: error.errorMessage, context: context);
+              });
+            }
+          } else if (snap.connectionState == ConnectionState.waiting) {
+            widget = const LoadingScreen();
+          } else {
+            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+              Messenger.showSnackBar(
+                  message: "Something went wrong", context: context);
+            });
+          }
+
+          return widget;
+        });
   }
 }

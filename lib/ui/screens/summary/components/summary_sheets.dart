@@ -132,7 +132,7 @@ class PocketBottomSheet {
     return BottomSheetLayout.showModalSheet(
         context: context,
         header: "Set Account Rate",
-        child: ListView(
+        child: Column(
           children: [
             // RateTile(
             //   controller: controllers[0],
@@ -259,7 +259,6 @@ class _RateTileState extends State<RateTile> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                     
                       contentPadding: EdgeInsets.all(3),
                       isDense: true,
                       border: OutlineInputBorder(

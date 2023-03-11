@@ -123,8 +123,7 @@ class PocketBottomSheet {
 
   static showAccountsAndSetRateAllocation(BuildContext context) {
     List<TextEditingController> controllers = [
-      TextEditingController(
-          text: context.read<SavingsAccountManager>().rate.toString()),
+      
       TextEditingController(
           text: context.read<InvestmentAccountManager>().rate.toString()),
       TextEditingController(
@@ -138,7 +137,7 @@ class PocketBottomSheet {
           children: [
             RateTile(
               controller: controllers[0],
-              title: Accounts.Savings.name,
+              title: Accounts.Budget.name,
             ),
             RateTile(
               controller: controllers[1],
@@ -165,11 +164,7 @@ class PocketBottomSheet {
                       behavior: SnackBarBehavior.floating,
                     );
                   } else {
-                    context
-                        .read<SavingsAccountManager>()
-                        .updateRate(double.parse(controllers[0].text));
-
-                    context.read<SavingsAccountManager>().updateBalance();
+                   
 
                     context
                         .read<InvestmentAccountManager>()

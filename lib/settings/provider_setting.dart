@@ -21,9 +21,9 @@ class ProviderSetting extends StatelessWidget {
         ChangeNotifierProvider<IncomeSourceManager>(
           create: (context) => IncomeSourceManager(),
         ),
-        ChangeNotifierProvider<SavingsAccountManager>(
-          create: (context) => SavingsAccountManager(),
-        ),
+        // ChangeNotifierProvider<BudgetManager>(
+        //   create: (context) => BudgetManager(),
+        // ),
         ChangeNotifierProvider<InvestmentAccountManager>(
           create: (context) => InvestmentAccountManager(),
         ),

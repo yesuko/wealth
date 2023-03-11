@@ -108,13 +108,13 @@ class SummaryAccount extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       child: Row(children: [
-        SummaryCard(
-          title: Accounts.Savings.name,
-          amount: context.watch<SavingsAccountManager>().balance,
-          amountForLastMonth:
-              context.read<SavingsAccountManager>().prevMonthAmount,
-          percentage: context.read<SavingsAccountManager>().rate,
-        ),
+        // SummaryCard(
+        //   title: Accounts.Savings.name,
+        //   amount: context.watch<SavingsAccountManager>().balance,
+        //   amountForLastMonth:
+        //       context.read<SavingsAccountManager>().prevMonthAmount,
+        //   percentage: context.read<SavingsAccountManager>().rate,
+        // ),
         SummaryCard(
           title: Accounts.Investment.name,
           amount: context.watch<InvestmentAccountManager>().balance,
@@ -317,8 +317,8 @@ class SummaryCard extends StatelessWidget {
   Color getDecorationColorFromAccountName() {
     if (title == Accounts.Emergency.name) {
       return emergencyColor;
-    } else if (title == Accounts.Savings.name) {
-      return savingsColor;
+    } else if (title == Accounts.Budget.name) {
+      return budgetColor;
     } else {
       return investmentColor;
     }

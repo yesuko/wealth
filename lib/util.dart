@@ -43,7 +43,7 @@ enum RateArrow {
 
 // Accounts
 enum Accounts {
-  Savings,
+  Budget,
   Investment,
   Emergency,
 }
@@ -52,20 +52,20 @@ enum Accounts {
 enum Screens {
   Summary,
   Accounts,
-  Savings,
+  Budget,
   Investments,
   Emergency,
   Settings,
 }
 
 // colors
-const emergencyColor = Color(0xFFBA68C8);
-const emergencyColorDeep = Color(0XFF662a4a);
-const emergencyColorSecondary = Color(0XFF462a66);
+const budgetColor = Color(0xFFBA68C8);
+const budgetColorDeep = Color(0XFF662a4a);
+const budgetColorSecondary = Color(0XFF462a66);
 
-const savingsColor = Colors.teal;
-const savingsColorDeep = Color(0xFF2a6646);
-const savingsColorSecondary = Color(0xFF92E3A9);
+const emergencyColor = Colors.teal;
+const emergencyColorDeep = Color(0xFF2a6646);
+const emergencyColorSecondary = Color(0xFF92E3A9);
 
 const investmentColor = Color(0xFFFFC100);
 const investmentColorDeep = Color(0xFF66462a);

@@ -69,15 +69,15 @@ abstract class Account {
   }
 }
 
-class SavingsAccountModel extends Account {
-  SavingsAccountModel({
-    double rate = 20,
-    int holdWithdrawalDuration = 30,
-  }) : super(
-          rate: rate,
-          holdWithdrawalDuration: holdWithdrawalDuration,
-        );
-}
+// class SavingsAccountModel extends Account {
+//   SavingsAccountModel({
+//     double rate = 20,
+//     int holdWithdrawalDuration = 30,
+//   }) : super(
+//           rate: rate,
+//           holdWithdrawalDuration: holdWithdrawalDuration,
+//         );
+// }
 
 class InvestmentAccountModel extends Account {
   InvestmentAccountModel({

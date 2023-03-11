@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wealth/logic/managers/user_manager.dart';
 import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/top_bar.dart';
 import 'package:wealth/util.dart';
@@ -13,7 +15,7 @@ class UserSettingsScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: TopBar(
-        title: Screens.Settings.name,
+        title: 'Hi! ${context.read<UserManager>().currentUser.firstName}',
         centerTitle: false,
         actions: [
           AvatarPane(

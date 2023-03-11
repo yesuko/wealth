@@ -6,7 +6,6 @@ import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/screens/register/register_screen.dart';
 import 'package:wealth/ui/widgets/avatar.dart';
-import 'package:wealth/ui/widgets/bottom_sheet.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
 import 'package:wealth/ui/widgets/messenger.dart';
 import 'package:wealth/ui/widgets/rounded_button.dart';

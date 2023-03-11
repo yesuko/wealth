@@ -5,7 +5,7 @@ import 'package:wealth/database/user_database.dart';
 import '../models/user_model.dart';
 
 class UserManager extends ChangeNotifier {
-  UserModel? currentUser;
+  UserModel currentUser = UserModel();
   Future<void> registerNewUser(UserModel userModel, String password) async {
     await UserDatabase.registerNewUser(userModel, password: password);
     await fetchUserData();
@@ -22,7 +22,7 @@ class UserManager extends ChangeNotifier {
     if (user != null) {
       currentUser = await UserDatabase.fetchUserData(user.uid);
     } else {
-      currentUser = null;
+      currentUser = UserModel();
     }
     notifyListeners();
   }

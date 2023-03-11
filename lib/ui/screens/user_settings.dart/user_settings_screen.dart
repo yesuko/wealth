@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/user_manager.dart';
 import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/top_bar.dart';
-import 'package:wealth/util.dart';
 
 import 'components/user_settings_body.dart';
 

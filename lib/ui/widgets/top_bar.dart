@@ -36,6 +36,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
               text: title,
               paddingVertival: 1.0,
               alignment: centerTitle ? Alignment.center : Alignment.centerLeft,
+              paddingHorizontal: centerTitle ? null : 0,
             ),
         actions: actions,
         bottom: PreferredSize(

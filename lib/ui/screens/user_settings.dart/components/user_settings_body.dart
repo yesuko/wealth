@@ -11,8 +11,8 @@ import 'package:wealth/util.dart';
 
 import '../../../widgets/messenger.dart';
 
-class AccountBody extends StatelessWidget {
-  const AccountBody({Key? key}) : super(key: key);
+class UserSettingsBody extends StatelessWidget {
+  const UserSettingsBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

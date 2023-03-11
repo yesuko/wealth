@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wealth/ui/screens/account/account_screen.dart';
+import 'package:wealth/ui/screens/user_settings.dart/user_settings_screen.dart';
 import 'package:wealth/ui/screens/emergency/emergency_screen.dart';
 import 'package:wealth/ui/screens/home/components/homebody.dart';
 import 'package:wealth/ui/screens/home/components/homebottom.dart';
@@ -43,9 +43,9 @@ class HomeScreen extends StatelessWidget {
         icon: const Icon(Icons.payments_outlined),
         label: Screens.Emergency.name,
       ),
-      const AccountScreen(): BottomNavigationBarItem(
+      const UserSettingsScreen(): BottomNavigationBarItem(
         icon: const Icon(Icons.manage_accounts_outlined),
-        label: Screens.Account.name,
+        label: Screens.Settings.name,
       ),
     };
   }

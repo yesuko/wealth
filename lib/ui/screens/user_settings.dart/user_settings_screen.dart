@@ -3,17 +3,17 @@ import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/top_bar.dart';
 import 'package:wealth/util.dart';
 
-import 'components/account_body.dart';
+import 'components/user_settings_body.dart';
 
-class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+class UserSettingsScreen extends StatelessWidget {
+  const UserSettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: TopBar(
-        title: kAccountScreenTitle,
+        title: Screens.Settings.name,
         centerTitle: false,
         actions: [
           AvatarPane(
@@ -26,7 +26,7 @@ class AccountScreen extends StatelessWidget {
           )
         ],
       ),
-      body: const AccountBody(),
+      body: const UserSettingsBody(),
     );
   }
 }

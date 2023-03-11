@@ -54,7 +54,7 @@ enum Screens {
   Savings,
   Investments,
   Emergency,
-  Account,
+  Settings,
 }
 
 // colors

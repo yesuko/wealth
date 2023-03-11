@@ -1,6 +1,6 @@
 class UserModel {
-  final String firstName, lastName, phoneNumber, userType, email;
-  String uid;
+  final String firstName, lastName, phoneNumber, email;
+  String uid, userType;
 
   UserModel.attributes({
     this.uid = "",

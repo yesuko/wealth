@@ -27,6 +27,11 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateUserData(UserModel model) async {
+    await UserDatabase.saveUserData(model);
+    await fetchUserData();
+  }
+
   Future<void> signUserOut() async {
     await UserDatabase.signOut();
     await fetchUserData();

@@ -16,15 +16,13 @@ class AccountScreen extends StatelessWidget {
         title: kAccountScreenTitle,
         centerTitle: false,
         actions: [
-          Avatar(
-            assetName: "assets/icons/s1.png",
-            radius: size.height * 0.008,
+          AvatarPane(
+            isForRegistration: false,
+            radius: size.height * 0.010,
             scale: size.height * 0.005,
-            label: '',
             marginVertical: 3,
             marginHorizontal: 10,
             crossAxisAlignment: CrossAxisAlignment.end,
-            color: kPrimaryColorAccent,
           )
         ],
       ),

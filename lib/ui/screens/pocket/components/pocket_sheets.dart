@@ -210,7 +210,7 @@ class IncomeSourceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tile(
       title: toBeginningOfSentenceCase(name) ?? "",
-      tailText: '$currencyUnit $amount',
+      tailText: '$kCurrencyUnit $amount',
       onTap: onTap,
     );
   }

@@ -66,7 +66,7 @@ class PocketIncome extends StatelessWidget {
             child: FittedBox(
               child: HeaderText(
                 text:
-                    "Total:  $currencyUnit ${context.watch<IncomeSourceManager>().totalIncome}",
+                    "Total:  $kCurrencyUnit ${context.watch<IncomeSourceManager>().totalIncome}",
                 paddingHorizontal: 0,
                 size: 25,
               ),
@@ -253,7 +253,7 @@ class PocketCard extends StatelessWidget {
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: HeaderText(
-                        text: "$currencyUnit ${amount.toStringAsFixed(2)}",
+                        text: "$kCurrencyUnit ${amount.toStringAsFixed(2)}",
                         paddingHorizontal: 0,
                         size: 25,
                       ),
@@ -278,7 +278,7 @@ class PocketCard extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          "$currencyUnit ${amountForLastMonth.toStringAsFixed(2)}",
+                          "$kCurrencyUnit ${amountForLastMonth.toStringAsFixed(2)}",
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.double,

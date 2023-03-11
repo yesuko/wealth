@@ -13,8 +13,26 @@ const double kExtendedToolBarHeight = 100;
 const String kAppTitle = "Wealth";
 const String kAccountScreenTitle = "Account";
 
+// Avatars
+//   Thrifty – Someone who saves and spends money carefully.
+// Frugal – A person who is economical with money and avoids waste.
+// Tightwad – A person who is excessively unwilling to spend money.
+// Hoarder – Someone who saves and accumulates items, including money, beyond what is necessary.
+// Saver – A person who regularly saves money.
+// Investor – A person who puts money into investments with the expectation of making a profit.
+// Penny-pincher – A person who is very careful with their money and tries to save as much as possible.
+// Budgeter – A person who creates and follows a budget to manage their money.
+const Map<String, String> kAvatarPaths = {
+  "Saver": "assets/icons/s1.png",
+  "Invester": "assets/icons/s2.png",
+  "Frugal": "assets/icons/s3.png",
+  "Tightward": "assets/icons/s4.png",
+  "Thrifty": "assets/icons/s5.png",
+  "Budgetor": "assets/icons/s6.png",
+};
+
 // unit
-const String currencyUnit = "GH₵";
+const String kCurrencyUnit = "GH₵";
 
 // Arrow rate
 enum RateArrow {

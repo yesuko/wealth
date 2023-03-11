@@ -26,7 +26,7 @@ class UserDatabase {
       userModel.uid = user.uid;
 
       // add user details to firestore
-      await _saveUserData(userModel);
+      await saveUserData(userModel);
     }
   }
 
@@ -46,10 +46,9 @@ class UserDatabase {
   }
 
 // save newly created and authenticated user details in firestore
-  static Future<void> _saveUserData(UserModel userModel) async {
+  static Future<void> saveUserData(UserModel userModel) async {
     try {
       Map<String, dynamic> update = {
-        
         'firstName': userModel.firstName,
         'lastName': userModel.lastName,
         'userType': userModel.userType,
@@ -57,10 +56,13 @@ class UserDatabase {
         'email': userModel.email
       };
 
+     // option to merge new/updated data with old ones.
+      SetOptions option = SetOptions(merge: true);
+
       await FirebaseFirestore.instance
           .collection('users')
           .doc(userModel.uid)
-          .set(update);
+          .set(update, option);
     } on FirebaseException catch (e) {
       throw UserDataException(e.code);
     }

@@ -123,7 +123,6 @@ class PocketBottomSheet {
 
   static showAccountsAndSetRateAllocation(BuildContext context) {
     List<TextEditingController> controllers = [
-      
       TextEditingController(
           text: context.read<InvestmentAccountManager>().rate.toString()),
       TextEditingController(
@@ -135,16 +134,16 @@ class PocketBottomSheet {
         header: "Set Account Rate",
         child: ListView(
           children: [
+            // RateTile(
+            //   controller: controllers[0],
+            //   title: Accounts.Budget.name,
+            // ),
             RateTile(
               controller: controllers[0],
-              title: Accounts.Budget.name,
-            ),
-            RateTile(
-              controller: controllers[1],
               title: Accounts.Investment.name,
             ),
             RateTile(
-              controller: controllers[2],
+              controller: controllers[1],
               title: Accounts.Emergency.name,
             ),
             SizedBox(
@@ -164,15 +163,13 @@ class PocketBottomSheet {
                       behavior: SnackBarBehavior.floating,
                     );
                   } else {
-                   
-
                     context
                         .read<InvestmentAccountManager>()
-                        .updateRate(double.parse(controllers[1].text));
+                        .updateRate(double.parse(controllers[0].text));
                     context.read<InvestmentAccountManager>().updateBalance();
                     context
                         .read<EmergencyAccountManager>()
-                        .updateRate(double.parse(controllers[2].text));
+                        .updateRate(double.parse(controllers[1].text));
 
                     context.read<EmergencyAccountManager>().updateBalance();
 
@@ -262,6 +259,7 @@ class _RateTileState extends State<RateTile> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
+                     
                       contentPadding: EdgeInsets.all(3),
                       isDense: true,
                       border: OutlineInputBorder(

@@ -181,7 +181,7 @@ class _AvatarPaneState extends State<AvatarPane> {
               marginVertical: widget.marginVertical,
               marginHorizontal: widget.marginHorizontal,
               crossAxisAlignment: widget.crossAxisAlignment,
-              color: kPrimaryColorAccent,
+              color: kPrimaryColor,
             ),
           )),
     );

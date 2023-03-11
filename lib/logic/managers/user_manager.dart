@@ -36,4 +36,8 @@ class UserManager extends ChangeNotifier {
     await UserDatabase.signOut();
     await fetchUserData();
   }
+
+  bool get userIsLogedIn {
+    return FirebaseAuth.instance.currentUser != null;
+  }
 }

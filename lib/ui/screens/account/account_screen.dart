@@ -14,11 +14,11 @@ class AccountScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: TabBar(
-            indicatorColor: kPrimaryColorAccent,
+            indicatorColor: kPrimaryColor,
             labelColor: Colors.black,
             indicatorWeight: 3.0,
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 20),
-            unselectedLabelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
             tabs: [
               Tab(
                 child: Row(

@@ -51,6 +51,7 @@ enum Accounts {
 // Screens
 enum Screens {
   Summary,
+  Accounts,
   Savings,
   Investments,
   Emergency,

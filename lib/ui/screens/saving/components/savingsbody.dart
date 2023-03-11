@@ -6,6 +6,6 @@ class SavingsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: SvgPicture.asset("assets/images/savings_bg.svg"));
+    return Center(child: SvgPicture.asset("assets/images/emergency_bg.svg"));
   }
 }

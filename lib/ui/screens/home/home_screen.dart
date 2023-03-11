@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:wealth/ui/screens/user_settings.dart/user_settings_screen.dart';
-import 'package:wealth/ui/screens/emergency/emergency_screen.dart';
 import 'package:wealth/ui/screens/home/components/homebody.dart';
 import 'package:wealth/ui/screens/home/components/homebottom.dart';
-import 'package:wealth/ui/screens/investment/investments_screen.dart';
 import 'package:wealth/ui/screens/summary/summary_screen.dart';
-import 'package:wealth/ui/screens/saving/savings_screen.dart';
+import 'package:wealth/ui/screens/user_settings.dart/user_settings_screen.dart';
 import 'package:wealth/util.dart';
+
+import '../account/account_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,18 +30,23 @@ class HomeScreen extends StatelessWidget {
         icon: const Icon(Icons.dashboard_customize_outlined),
         label: Screens.Summary.name,
       ),
-      const SavingsScreen(): BottomNavigationBarItem(
-        icon: const Icon(Icons.savings_outlined),
-        label: Screens.Savings.name,
-      ),
-      const InvestmentsScreen(): BottomNavigationBarItem(
+      const AccountScreen(): BottomNavigationBarItem(
         icon: const Icon(Icons.account_balance_outlined),
-        label: Screens.Investments.name,
+        label: Screens.Accounts.name,
       ),
-      const EmergencyScreen(): BottomNavigationBarItem(
-        icon: const Icon(Icons.payments_outlined),
-        label: Screens.Emergency.name,
-      ),
+
+      // const SavingsScreen(): BottomNavigationBarItem(
+      //   icon: const Icon(Icons.savings_outlined),
+      //   label: Screens.Savings.name,
+      // ),
+      // const InvestmentsScreen(): BottomNavigationBarItem(
+      //   icon: const Icon(Icons.account_balance_outlined),
+      //   label: Screens.Investments.name,
+      // ),
+      // const EmergencyScreen(): BottomNavigationBarItem(
+      //   icon: const Icon(Icons.payments_outlined),
+      //   label: Screens.Emergency.name,
+      // ),
       const UserSettingsScreen(): BottomNavigationBarItem(
         icon: const Icon(Icons.manage_accounts_outlined),
         label: Screens.Settings.name,

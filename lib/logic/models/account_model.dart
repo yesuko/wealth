@@ -91,7 +91,7 @@ class InvestmentAccountModel extends Account {
 
 class EmergencyAccountModel extends Account {
   EmergencyAccountModel({
-    double rate = 50,
+    double rate = 70,
     int holdWithdrawalDuration = 0,
   }) : super(
           rate: rate,

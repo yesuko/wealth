@@ -38,9 +38,10 @@ class Messenger {
           textAlign: TextAlign.justify,
         ),
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         actions: actions,
         actionsAlignment: actionsAlignment,
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       ),
     );
   }

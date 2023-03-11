@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
+import 'package:wealth/logic/managers/user_manager.dart';
+import 'package:wealth/logic/models/exceptions.dart';
+import 'package:wealth/ui/screens/home/components/home_provider.dart';
+import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
+import 'package:wealth/ui/widgets/loader.dart';
 import 'package:wealth/util.dart';
+
+import '../../../widgets/messenger.dart';
 
 class AccountBody extends StatelessWidget {
   const AccountBody({Key? key}) : super(key: key);
@@ -25,12 +34,67 @@ class AccountBody extends StatelessWidget {
             ),
             //textColor: kFontColorRed,
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) {
-                return const LoginScreen();
-              }));
+              Messenger.showAlertDialog(
+                  message: "You are about to be logged out",
+                  actionsAlignment: MainAxisAlignment.center,
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cancel")),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return LogoutFuture(
+                              future: context.read<UserManager>().signUserOut(),
+                            );
+                          }));
+                        },
+                        child: const Text("Log out")),
+                  ],
+                  context: context);
             }),
       ],
+    );
+  }
+}
+
+class LogoutFuture extends StatelessWidget {
+  const LogoutFuture({super.key, required this.future});
+  final Future<void> future;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: future,
+      builder: (ctx, snap) {
+        Widget widget = const HomeScreen();
+        if (snap.connectionState == ConnectionState.done) {
+          if (snap.hasError) {
+            final err = snap.error as UserDataException;
+            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+              Messenger.showSnackBar(
+                  message: err.errorMessage, context: context);
+            });
+          } else {
+            widget = const LoginScreen();
+            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+              context.read<HomeProvider>().selectedIndex = 0;
+            });
+          }
+        } else if (snap.connectionState == ConnectionState.waiting) {
+          widget = const LoadingScreen();
+        } else {
+          SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+            Messenger.showSnackBar(
+                message: "Something went wrong", context: context);
+          });
+        }
+
+        return widget;
+      },
     );
   }
 }

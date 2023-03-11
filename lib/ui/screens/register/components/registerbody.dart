@@ -111,7 +111,7 @@ class RegisterBody extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => FutureSection(
+                            builder: (_) => RegisterFuture(
                               future: context
                                   .read<UserManager>()
                                   .registerNewUser(
@@ -144,8 +144,8 @@ class RegisterBody extends StatelessWidget {
   }
 }
 
-class FutureSection extends StatelessWidget {
-  const FutureSection({
+class RegisterFuture extends StatelessWidget {
+  const RegisterFuture({
     super.key,
     required this.future,
   });

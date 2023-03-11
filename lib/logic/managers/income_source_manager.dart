@@ -9,7 +9,7 @@ class IncomeSourceManager extends ChangeNotifier {
   IncomeSourceManager() {
     incomeSources = [
       IncomeSourceModel.withAttibutes(
-          name: "Other", createdOn: DateTime.now(), income: 500)
+          name: "Other", createdOn: DateTime.now(), income: 0)
     ];
 
     calculateAndUpdateTotalIncome();

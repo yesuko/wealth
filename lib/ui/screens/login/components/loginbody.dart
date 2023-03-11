@@ -69,7 +69,7 @@ class LoginBody extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => FutureSection(
+                              builder: (_) => LoginFuture(
                                 future: context.read<UserManager>().signInUser(
                                       email,
                                       password,
@@ -95,8 +95,8 @@ class LoginBody extends StatelessWidget {
   }
 }
 
-class FutureSection extends StatelessWidget {
-  const FutureSection({
+class LoginFuture extends StatelessWidget {
+  const LoginFuture({
     super.key,
     required this.future,
   });

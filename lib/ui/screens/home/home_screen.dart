@@ -4,7 +4,7 @@ import 'package:wealth/ui/screens/emergency/emergency_screen.dart';
 import 'package:wealth/ui/screens/home/components/homebody.dart';
 import 'package:wealth/ui/screens/home/components/homebottom.dart';
 import 'package:wealth/ui/screens/investment/investments_screen.dart';
-import 'package:wealth/ui/screens/pocket/pocket_screen.dart';
+import 'package:wealth/ui/screens/summary/summary_screen.dart';
 import 'package:wealth/ui/screens/saving/savings_screen.dart';
 import 'package:wealth/util.dart';
 
@@ -27,9 +27,9 @@ class HomeScreen extends StatelessWidget {
     /// build a map of bottom navigation item and their respective
     /// screens
     return {
-      const PocketScreen(): BottomNavigationBarItem(
-        icon: const Icon(Icons.wallet_outlined),
-        label: Screens.Pockets.name,
+      const SummaryScreen(): BottomNavigationBarItem(
+        icon: const Icon(Icons.dashboard_customize_outlined),
+        label: Screens.Summary.name,
       ),
       const SavingsScreen(): BottomNavigationBarItem(
         icon: const Icon(Icons.savings_outlined),
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         label: Screens.Emergency.name,
       ),
       const AccountScreen(): BottomNavigationBarItem(
-        icon: const Icon(Icons.account_circle_outlined),
+        icon: const Icon(Icons.manage_accounts_outlined),
         label: Screens.Account.name,
       ),
     };

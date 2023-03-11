@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
-import 'package:wealth/ui/screens/pocket/components/pocket_sheets.dart';
+import 'package:wealth/ui/screens/summary/components/summary_sheets.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 import 'package:wealth/util.dart';
 
-class PocketBody extends StatelessWidget {
-  const PocketBody({super.key});
+class SummaryBody extends StatelessWidget {
+  const SummaryBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class PocketBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: const [
-            PocketLayout(header: "Income", child: PocketIncome()),
-            PocketLayout(header: "Account", child: PocketAccount()),
-            PocketLayout(header: "Activities", child: PocketActivities()),
+            SummaryLayout(header: "Income", child: SummaryIncome()),
+            SummaryLayout(header: "Account", child: SummaryAccount()),
+            SummaryLayout(header: "Activities", child: SummaryActivities()),
           ],
         ),
       ),
@@ -27,8 +27,8 @@ class PocketBody extends StatelessWidget {
   }
 }
 
-class PocketLayout extends StatelessWidget {
-  const PocketLayout({super.key, required this.header, required this.child});
+class SummaryLayout extends StatelessWidget {
+  const SummaryLayout({super.key, required this.header, required this.child});
   final String header;
   final Widget child;
 
@@ -43,8 +43,8 @@ class PocketLayout extends StatelessWidget {
   }
 }
 
-class PocketIncome extends StatelessWidget {
-  const PocketIncome({super.key});
+class SummaryIncome extends StatelessWidget {
+  const SummaryIncome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +97,8 @@ class PocketIncome extends StatelessWidget {
   }
 }
 
-class PocketAccount extends StatelessWidget {
-  const PocketAccount({
+class SummaryAccount extends StatelessWidget {
+  const SummaryAccount({
     Key? key,
   }) : super(key: key);
 
@@ -108,21 +108,21 @@ class PocketAccount extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       child: Row(children: [
-        PocketCard(
+        SummaryCard(
           title: Accounts.Savings.name,
           amount: context.watch<SavingsAccountManager>().balance,
           amountForLastMonth:
               context.read<SavingsAccountManager>().prevMonthAmount,
           percentage: context.read<SavingsAccountManager>().rate,
         ),
-        PocketCard(
+        SummaryCard(
           title: Accounts.Investment.name,
           amount: context.watch<InvestmentAccountManager>().balance,
           amountForLastMonth:
               context.read<InvestmentAccountManager>().prevMonthAmount,
           percentage: context.read<InvestmentAccountManager>().rate,
         ),
-        PocketCard(
+        SummaryCard(
           title: Accounts.Emergency.name,
           amount: context.watch<EmergencyAccountManager>().balance,
           amountForLastMonth:
@@ -134,8 +134,8 @@ class PocketAccount extends StatelessWidget {
   }
 }
 
-class PocketActivities extends StatelessWidget {
-  const PocketActivities({
+class SummaryActivities extends StatelessWidget {
+  const SummaryActivities({
     Key? key,
   }) : super(key: key);
 
@@ -147,28 +147,28 @@ class PocketActivities extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          PocketActivity(
+          SummaryActivity(
             title: "Add Source",
             icon: Image.asset("assets/icons/gold.png"),
             onTap: () {
               PocketBottomSheet.showAddIncomeSourceSheet(context);
             },
           ),
-          PocketActivity(
+          SummaryActivity(
             title: "Add Income",
             icon: Image.asset("assets/icons/add_income_dark.png"),
             onTap: () {
               PocketBottomSheet.showListOfSourecesAndUpdateIncome(context);
             },
           ),
-          PocketActivity(
+          SummaryActivity(
             title: "Set Allocation",
             icon: Image.asset("assets/icons/rate.png"),
             onTap: () {
               PocketBottomSheet.showAccountsAndSetRateAllocation(context);
             },
           ),
-          PocketActivity(
+          SummaryActivity(
             title: "Withdraw Money",
             icon: Image.asset("assets/icons/payment.png"),
             onTap: () {},
@@ -180,8 +180,8 @@ class PocketActivities extends StatelessWidget {
 }
 
 /// Pocket card layout widget
-class PocketCard extends StatelessWidget {
-  const PocketCard({
+class SummaryCard extends StatelessWidget {
+  const SummaryCard({
     super.key,
     required this.title,
     required this.amount,
@@ -326,8 +326,8 @@ class PocketCard extends StatelessWidget {
 }
 
 /// Pockets activity layout widget
-class PocketActivity extends StatelessWidget {
-  const PocketActivity(
+class SummaryActivity extends StatelessWidget {
+  const SummaryActivity(
       {super.key, required this.title, required this.icon, this.onTap});
   final String title;
   final Widget icon;

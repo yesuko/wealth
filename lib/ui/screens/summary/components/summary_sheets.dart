@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
 import 'package:wealth/logic/models/income_source_model.dart';
-import 'package:wealth/ui/screens/pocket/components/pocket_controller.dart';
+import 'package:wealth/ui/screens/summary/components/summary_controller.dart';
 import 'package:wealth/ui/ui_validator.dart';
 import 'package:wealth/ui/widgets/bottom_sheet.dart';
 import 'package:wealth/ui/widgets/messenger.dart';

@@ -112,14 +112,12 @@ class _AvatarPaneState extends State<AvatarPane> {
       _selectedAvatarPath = kAvatarPaths.values.first;
       _selectedAvatarLabel = kAvatarPaths.keys.first;
     } else {
-      String? userType = context.read<UserManager>().currentUser?.userType;
+      String? userType = context.read<UserManager>().currentUser.userType;
 
-      if (userType != null) {
-        _selectedAvatarLabel = userType;
-        _selectedAvatarPath = getAvatarPathFromLabel(
-          _selectedAvatarLabel,
-        );
-      }
+      _selectedAvatarLabel = userType;
+      _selectedAvatarPath = getAvatarPathFromLabel(
+        _selectedAvatarLabel,
+      );
     }
   }
 
@@ -155,7 +153,7 @@ class _AvatarPaneState extends State<AvatarPane> {
                             _selectedAvatarPath =
                                 kAvatarPaths.entries.elementAt(index).value;
 
-                            currentUser!.userType = _selectedAvatarLabel =
+                            currentUser.userType = _selectedAvatarLabel =
                                 kAvatarPaths.entries.elementAt(index).key;
 
                             context

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
+import 'package:wealth/ui/screens/account/account_screen.dart';
+import 'package:wealth/ui/screens/home/components/home_provider.dart';
+import 'package:wealth/ui/screens/investment/investments_screen.dart';
 import 'package:wealth/ui/screens/summary/components/summary_sheets.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 import 'package:wealth/util.dart';
@@ -108,19 +111,17 @@ class SummaryAccount extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       child: Row(children: [
-        // SummaryCard(
-        //   title: Accounts.Savings.name,
-        //   amount: context.watch<SavingsAccountManager>().balance,
-        //   amountForLastMonth:
-        //       context.read<SavingsAccountManager>().prevMonthAmount,
-        //   percentage: context.read<SavingsAccountManager>().rate,
-        // ),
+        
         SummaryCard(
           title: Accounts.Investment.name,
           amount: context.watch<InvestmentAccountManager>().balance,
           amountForLastMonth:
               context.read<InvestmentAccountManager>().prevMonthAmount,
           percentage: context.read<InvestmentAccountManager>().rate,
+          onTap: () {
+            // move to the 1st tab of the account screen
+            Navigator.pushNamed(context, '/account', arguments: 0);
+          },
         ),
         SummaryCard(
           title: Accounts.Emergency.name,
@@ -128,6 +129,10 @@ class SummaryAccount extends StatelessWidget {
           amountForLastMonth:
               context.read<EmergencyAccountManager>().prevMonthAmount,
           percentage: context.read<EmergencyAccountManager>().rate,
+          onTap: () {
+            // move to the 2nd tab of the account screen
+            Navigator.pushNamed(context, '/account', arguments: 1);
+          },
         )
       ]),
     );
@@ -187,119 +192,124 @@ class SummaryCard extends StatelessWidget {
     required this.amount,
     required this.percentage,
     required this.amountForLastMonth,
+    this.onTap,
   });
   final String title;
   final double amount;
   final double amountForLastMonth;
+  final Function()? onTap;
 
   final double percentage;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      height: size.height * 0.2,
-      width: size.width * 0.7,
-      decoration: BoxDecoration(
-        border: Border.all(color: kPrimaryColor),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 90,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-                  child: Text(
-                    title,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  margin: const EdgeInsets.all(10),
-                  child: Text(
-                    "${percentage.toStringAsFixed(1)} %",
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Flexible(
-            flex: 120,
-            //fit: FlexFit.tight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  alignment: Alignment.centerRight,
-                  margin: const EdgeInsets.all(4),
-                  child: getIconFromComparingAmountForLastMonthToAmount(),
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: size.width * 0.6),
-                  child: Container(
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        height: size.height * 0.2,
+        width: size.width * 0.7,
+        decoration: BoxDecoration(
+          border: Border.all(color: kPrimaryColor),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 90,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
                     margin:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: HeaderText(
-                        text: "$kCurrencyUnit ${amount.toStringAsFixed(2)}",
-                        paddingHorizontal: 0,
-                        size: 25,
-                      ),
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                    child: Text(
+                      title,
+                      style: const TextStyle(fontSize: 14),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    alignment: Alignment.centerRight,
+                    margin: const EdgeInsets.all(10),
+                    child: Text(
+                      "${percentage.toStringAsFixed(1)} %",
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Flexible(
-            flex: 90,
-            child: Container(
-              alignment: Alignment.centerRight,
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: RichText(
-                text: TextSpan(
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    overflow: TextOverflow.ellipsis,
+            Flexible(
+              flex: 120,
+              //fit: FlexFit.tight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    alignment: Alignment.centerRight,
+                    margin: const EdgeInsets.all(4),
+                    child: getIconFromComparingAmountForLastMonthToAmount(),
                   ),
-                  children: [
-                    TextSpan(
-                      text:
-                          "$kCurrencyUnit ${amountForLastMonth.toStringAsFixed(2)}",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationStyle: TextDecorationStyle.double,
-                        fontWeight: FontWeight.bold,
-                        decorationColor: getDecorationColorFromAccountName(),
-                        decorationThickness: 3.0,
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: size.width * 0.6),
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: HeaderText(
+                          text: "$kCurrencyUnit ${amount.toStringAsFixed(2)}",
+                          paddingHorizontal: 0,
+                          size: 25,
+                        ),
                       ),
                     ),
-                    TextSpan(
-                        text: title == Accounts.Emergency.name
-                            ? " spent last month"
-                            : " reached last month",
-                        style: const TextStyle(
-                          fontSize: 15,
-                        )),
-                  ],
+                  ),
+                ],
+              ),
+            ),
+            Flexible(
+              flex: 90,
+              child: Container(
+                alignment: Alignment.centerRight,
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: RichText(
+                  text: TextSpan(
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    children: [
+                      TextSpan(
+                        text:
+                            "$kCurrencyUnit ${amountForLastMonth.toStringAsFixed(2)}",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          decorationStyle: TextDecorationStyle.double,
+                          fontWeight: FontWeight.bold,
+                          decorationColor: getDecorationColorFromAccountName(),
+                          decorationThickness: 3.0,
+                        ),
+                      ),
+                      TextSpan(
+                          text: title == Accounts.Emergency.name
+                              ? " spent last month"
+                              : " reached last month",
+                          style: const TextStyle(
+                            fontSize: 15,
+                          )),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

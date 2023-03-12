@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: HomeBottom(
         items: mapScreenstoNavigationBarItems.values.toList(),
+      
       ),
     );
   }

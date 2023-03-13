@@ -16,7 +16,7 @@ import '../../../../logic/managers/user_manager.dart';
 import '../../../../logic/models/user_model.dart';
 import '../../../ui_validator.dart';
 import '../../../widgets/loader.dart';
-import '../../../widgets/navigator.dart';
+import '../../../widgets/navigation.dart';
 
 // global variable shared by the register body and avarta pane to hole the type of user
 late String userType;

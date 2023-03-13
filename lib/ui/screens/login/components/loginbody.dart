@@ -15,7 +15,7 @@ import '../../../../logic/models/exceptions.dart';
 import '../../../ui_validator.dart';
 import '../../../widgets/loader.dart';
 import '../../../widgets/messenger.dart';
-import '../../../widgets/navigator.dart';
+import '../../../widgets/navigation.dart';
 
 class LoginBody extends StatelessWidget {
   LoginBody({super.key});

@@ -10,7 +10,7 @@ import 'package:wealth/ui/widgets/loader.dart';
 import 'package:wealth/util.dart';
 
 import '../../../widgets/messenger.dart';
-import '../../../widgets/navigator.dart';
+import '../../../widgets/navigation.dart';
 
 class UserSettingsBody extends StatelessWidget {
   const UserSettingsBody({Key? key}) : super(key: key);

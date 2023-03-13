@@ -4,7 +4,7 @@ import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
 import 'package:wealth/logic/models/income_source_model.dart';
 
-class PocketController {
+class SummaryController {
   static updateAllAccountBalance(BuildContext context) {
     context.read<InvestmentAccountManager>().updateBalance();
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wealth/ui/screens/account/components/account_screen_manager.dart';
+import 'package:wealth/ui/controllers/managers/account_screen_manager.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 
 import '../../../util.dart';

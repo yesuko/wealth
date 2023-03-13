@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wealth/ui/screens/home/components/home_screen_manager.dart';
+import 'package:wealth/ui/controllers/managers/home_screen_manager.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key, required this.children});

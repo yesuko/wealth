@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
-import 'package:wealth/ui/screens/home/components/home_screen_manager.dart';
+import 'package:wealth/ui/controllers/managers/home_screen_manager.dart';
 import 'package:wealth/ui/screens/summary/components/summary_sheets.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 import 'package:wealth/util.dart';
 
-import '../../account/components/account_screen_manager.dart';
+import '../../../controllers/managers/account_screen_manager.dart';
 
 class SummaryBody extends StatelessWidget {
   const SummaryBody({super.key});

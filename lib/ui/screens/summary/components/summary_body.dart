@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
-import 'package:wealth/ui/screens/account/account_screen.dart';
-import 'package:wealth/ui/screens/home/components/home_provider.dart';
-import 'package:wealth/ui/screens/investment/investments_screen.dart';
+import 'package:wealth/ui/screens/home/components/home_screen_manager.dart';
 import 'package:wealth/ui/screens/summary/components/summary_sheets.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 import 'package:wealth/util.dart';
+
+import '../../account/components/account_screen_manager.dart';
 
 class SummaryBody extends StatelessWidget {
   const SummaryBody({super.key});
@@ -111,7 +111,6 @@ class SummaryAccount extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       child: Row(children: [
-        
         SummaryCard(
           title: Accounts.Investment.name,
           amount: context.watch<InvestmentAccountManager>().balance,
@@ -120,7 +119,9 @@ class SummaryAccount extends StatelessWidget {
           percentage: context.read<InvestmentAccountManager>().rate,
           onTap: () {
             // move to the 1st tab of the account screen
-            Navigator.pushNamed(context, '/account', arguments: 0);
+            //Navigator.pushNamed(context, '/account', arguments: 0);
+            context.read<HomeScreenManager>().selectedIndex = 1;
+            context.read<AccountScreenManager>().selectedTab = 0;
           },
         ),
         SummaryCard(
@@ -131,7 +132,9 @@ class SummaryAccount extends StatelessWidget {
           percentage: context.read<EmergencyAccountManager>().rate,
           onTap: () {
             // move to the 2nd tab of the account screen
-            Navigator.pushNamed(context, '/account', arguments: 1);
+            //Navigator.pushNamed(context, '/account', arguments: 1);
+            context.read<HomeScreenManager>().selectedIndex = 1;
+            context.read<AccountScreenManager>().selectedTab = 1;
           },
         )
       ]),

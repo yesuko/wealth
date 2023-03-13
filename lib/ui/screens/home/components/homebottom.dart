@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wealth/ui/screens/home/components/home_provider.dart';
+import 'package:wealth/ui/screens/home/components/home_screen_manager.dart';
 
 class HomeBottom extends StatelessWidget {
   const HomeBottom({super.key, required this.items});
@@ -8,7 +8,7 @@ class HomeBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeProvider>(
+    return Consumer<HomeScreenManager>(
       builder: (_, prov, __) => BottomNavigationBar(
         //selectedItemColor: kPrimaryColor,
         type: BottomNavigationBarType.fixed,

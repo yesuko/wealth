@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/user_manager.dart';
 import 'package:wealth/logic/models/exceptions.dart';
-import 'package:wealth/ui/screens/home/components/home_provider.dart';
+import 'package:wealth/ui/screens/home/components/home_screen_manager.dart';
 import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/widgets/loader.dart';
@@ -81,7 +81,7 @@ class LogoutFuture extends StatelessWidget {
           } else {
             widget = const LoginScreen();
             SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-              context.read<HomeProvider>().selectedIndex = 0;
+              context.read<HomeScreenManager>().selectedIndex = 0;
             });
           }
         } else if (snap.connectionState == ConnectionState.waiting) {

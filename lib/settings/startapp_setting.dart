@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wealth/settings/provider_setting.dart';
+import 'package:wealth/ui/screens/account/account_screen.dart';
 import 'package:wealth/ui/startapp_screen.dart';
 import 'package:wealth/util.dart';
 
@@ -13,7 +14,10 @@ class StartAppSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderSetting(
       child: MaterialApp(
-      onGenerateRoute: GeneratedRoute.generateRoute,
+        //onGenerateRoute: GeneratedRoute.generateRoute,
+        routes: {
+          '/account': (context) => const AccountScreen(),
+        },
         debugShowCheckedModeBanner: false,
         title: kAppTitle,
         home: const StartAppScreen(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeProvider extends ChangeNotifier {
+class HomeScreenManager extends ChangeNotifier {
   int _selectedIndex = 0;
   int get selectedIndex => _selectedIndex;
 
@@ -8,6 +8,4 @@ class HomeProvider extends ChangeNotifier {
     _selectedIndex = index;
     notifyListeners();
   }
-
-  
 }

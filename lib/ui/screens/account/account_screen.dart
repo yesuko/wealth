@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wealth/ui/screens/account/components/account_screen_manager.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
 
 import '../../../util.dart';
@@ -19,13 +21,14 @@ class _AccountScreenState extends State<AccountScreen>
   @override
   void initState() {
     super.initState();
+    
     _tabController = TabController(length: 2, initialIndex: 0, vsync: this);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _tabIndex = ModalRoute.of(context)?.settings.arguments as int? ?? 0;
+    _tabIndex = context.watch<AccountScreenManager>().selectedTab;
     _tabController.animateTo(_tabIndex);
     
   }
@@ -38,11 +41,13 @@ class _AccountScreenState extends State<AccountScreen>
 
   @override
   Widget build(BuildContext context) {
+ 
+    
     return SafeArea(
       child: Scaffold(
         appBar: TabBar(
           controller: _tabController,
-          indicatorColor: kPrimaryColor,
+          indicatorColor: kPrimaryColorAccent,
           labelColor: Colors.black,
           indicatorWeight: 3.0,
           indicatorPadding: const EdgeInsets.symmetric(horizontal: 20),

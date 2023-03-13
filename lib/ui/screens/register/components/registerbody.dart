@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'package:wealth/logic/models/exceptions.dart';
-import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
-import 'package:wealth/ui/screens/register/register_screen.dart';
 import 'package:wealth/ui/widgets/avatar.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
-import 'package:wealth/ui/widgets/messenger.dart';
 import 'package:wealth/ui/widgets/rounded_button.dart';
 import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/rounded_password_field.dart';
@@ -15,7 +10,6 @@ import 'package:wealth/ui/widgets/rounded_password_field.dart';
 import '../../../../logic/managers/user_manager.dart';
 import '../../../../logic/models/user_model.dart';
 import '../../../ui_validator.dart';
-import '../../../widgets/loader.dart';
 import '../../../widgets/future_navigator.dart';
 
 // global variable shared by the register body and avarta pane to hole the type of user

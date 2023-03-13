@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: HomeBottom(
         items: mapScreenstoNavigationBarItems.values.toList(),
-      
       ),
     );
   }
@@ -35,19 +34,6 @@ class HomeScreen extends StatelessWidget {
         icon: const Icon(Icons.account_balance_outlined),
         label: Screens.Accounts.name,
       ),
-
-      // const SavingsScreen(): BottomNavigationBarItem(
-      //   icon: const Icon(Icons.savings_outlined),
-      //   label: Screens.Savings.name,
-      // ),
-      // const InvestmentsScreen(): BottomNavigationBarItem(
-      //   icon: const Icon(Icons.account_balance_outlined),
-      //   label: Screens.Investments.name,
-      // ),
-      // const EmergencyScreen(): BottomNavigationBarItem(
-      //   icon: const Icon(Icons.payments_outlined),
-      //   label: Screens.Emergency.name,
-      // ),
       const UserSettingsScreen(): BottomNavigationBarItem(
         icon: const Icon(Icons.manage_accounts_outlined),
         label: Screens.Settings.name,

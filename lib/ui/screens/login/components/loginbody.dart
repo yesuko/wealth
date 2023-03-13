@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:wealth/ui/screens/home/home_screen.dart';
-import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/screens/register/register_screen.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
 import 'package:wealth/ui/widgets/rounded_button.dart';
@@ -11,10 +8,7 @@ import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/rounded_password_field.dart';
 
 import '../../../../logic/managers/user_manager.dart';
-import '../../../../logic/models/exceptions.dart';
 import '../../../ui_validator.dart';
-import '../../../widgets/loader.dart';
-import '../../../widgets/messenger.dart';
 import '../../../widgets/future_navigator.dart';
 
 class LoginBody extends StatelessWidget {

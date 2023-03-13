@@ -9,13 +9,13 @@ class Navigation {
   /// initialRoute - the route name from which the function was called.
   ///                This serves as a return to widget incase error occured.
   /// destinationRoute - The route name to navigate to when future is completed.
-  /// message - message to show when navigated to the destination route.
+  /// callback - function to execute when navigated to the destination route.
   static navigate({
     required BuildContext context,
     required Future future,
     required String initialRoute,
     required String destinationRoute,
-    String? message,
+    void Function()? callback,
   }) async {
     // show loading screen
     Navigator.pushNamed(context, '/loading');
@@ -23,9 +23,9 @@ class Navigation {
     try {
       // wait for data to be fetched
       await future.then((value) {
-        if (message != null) {
+        if (callback != null) {
           SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-            Messenger.showSnackBar(message: message, context: context);
+            callback();
           });
         }
         Navigator.pushNamed(context, destinationRoute);

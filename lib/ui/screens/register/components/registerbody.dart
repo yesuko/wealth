@@ -120,8 +120,7 @@ class RegisterBody extends StatelessWidget {
                               password),
                           initialRoute: '/register',
                           destinationRoute: '/home',
-                          message: 'Welcome! $firstName');
-                          
+                          callback: () => 'Welcome! $firstName');
                     }
                   }),
               LoginRegisterLink(

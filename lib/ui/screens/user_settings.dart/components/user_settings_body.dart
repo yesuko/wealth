@@ -46,51 +46,21 @@ class UserSettingsBody extends StatelessWidget {
                         child: const Text("Cancel")),
                     TextButton(
                         onPressed: () {
-                          Navigation.navigate(context: context, future: context.read<UserManager>().signUserOut(), initialRoute: '/home', destinationRoute: '/login');
+                          Navigation.navigate(
+                            context: context,
+                            future: context.read<UserManager>().signUserOut(),
+                            initialRoute: '/home',
+                            destinationRoute: '/login',
+                            callback: () => context
+                                .read<HomeScreenManager>()
+                                .selectedIndex = 0,
+                          );
                         },
                         child: const Text("Log out")),
                   ],
                   context: context);
             }),
       ],
-    );
-  }
-}
-
-class LogoutFuture extends StatelessWidget {
-  const LogoutFuture({super.key, required this.future});
-  final Future<void> future;
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: future,
-      builder: (ctx, snap) {
-        Widget widget = const HomeScreen();
-        if (snap.connectionState == ConnectionState.done) {
-          if (snap.hasError) {
-            final err = snap.error as UserDataException;
-            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-              Messenger.showSnackBar(
-                  message: err.errorMessage, context: context);
-            });
-          } else {
-            widget = const LoginScreen();
-            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-              context.read<HomeScreenManager>().selectedIndex = 0;
-            });
-          }
-        } else if (snap.connectionState == ConnectionState.waiting) {
-          widget = const LoadingScreen();
-        } else {
-          SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-            Messenger.showSnackBar(
-                message: "Something went wrong", context: context);
-          });
-        }
-
-        return widget;
-      },
     );
   }
 }

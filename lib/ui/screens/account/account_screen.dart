@@ -21,7 +21,7 @@ class _AccountScreenState extends State<AccountScreen>
   @override
   void initState() {
     super.initState();
-    
+
     _tabController = TabController(length: 2, initialIndex: 0, vsync: this);
   }
 
@@ -30,7 +30,6 @@ class _AccountScreenState extends State<AccountScreen>
     super.didChangeDependencies();
     _tabIndex = context.watch<AccountScreenManager>().selectedTab;
     _tabController.animateTo(_tabIndex);
-    
   }
 
   @override
@@ -41,8 +40,6 @@ class _AccountScreenState extends State<AccountScreen>
 
   @override
   Widget build(BuildContext context) {
- 
-    
     return SafeArea(
       child: Scaffold(
         appBar: TabBar(

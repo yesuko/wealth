@@ -6,7 +6,6 @@ import 'package:wealth/ui/screens/home/home_screen.dart';
 import 'package:wealth/ui/screens/login/login_screen.dart';
 import 'package:wealth/ui/screens/register/register_screen.dart';
 import 'package:wealth/ui/widgets/login_register_link.dart';
-
 import 'package:wealth/ui/widgets/rounded_button.dart';
 import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/rounded_password_field.dart';
@@ -16,6 +15,7 @@ import '../../../../logic/models/exceptions.dart';
 import '../../../ui_validator.dart';
 import '../../../widgets/loader.dart';
 import '../../../widgets/messenger.dart';
+import '../../../widgets/navigator.dart';
 
 class LoginBody extends StatelessWidget {
   LoginBody({super.key});
@@ -66,16 +66,15 @@ class LoginBody extends StatelessWidget {
                     text: "LOG IN",
                     press: () {
                       if (_formKey.currentState!.validate() == true) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => LoginFuture(
-                                future: context.read<UserManager>().signInUser(
-                                      email,
-                                      password,
-                                    ),
+                        Navigation.navigate(
+                          context: context,
+                          future: context.read<UserManager>().signInUser(
+                                email,
+                                password,
                               ),
-                            ));
+                          initialRoute: '/login',
+                          destinationRoute: '/home',
+                        );
                       }
                     }),
                 LoginRegisterLink(press: () {
@@ -92,43 +91,5 @@ class LoginBody extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class LoginFuture extends StatelessWidget {
-  const LoginFuture({
-    super.key,
-    required this.future,
-  });
-
-  final Future future;
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: future,
-        builder: (_, snap) {
-          Widget widget = const LoginScreen();
-          if (snap.connectionState == ConnectionState.done) {
-            if (snap.hasError) {
-              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-                var error = snap.error as UserDataException;
-
-                Messenger.showSnackBar(
-                    message: error.errorMessage, context: context);
-              });
-            } else {
-              widget = const HomeScreen();
-            }
-          } else if (snap.connectionState == ConnectionState.waiting) {
-            widget = const LoadingScreen();
-          } else {
-            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-              Messenger.showSnackBar(
-                  message: "Something went wrong", context: context);
-            });
-          }
-
-          return widget;
-        });
   }
 }

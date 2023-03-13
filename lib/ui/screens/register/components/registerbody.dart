@@ -16,6 +16,7 @@ import '../../../../logic/managers/user_manager.dart';
 import '../../../../logic/models/user_model.dart';
 import '../../../ui_validator.dart';
 import '../../../widgets/loader.dart';
+import '../../../widgets/navigator.dart';
 
 // global variable shared by the register body and avarta pane to hole the type of user
 late String userType;
@@ -107,22 +108,20 @@ class RegisterBody extends StatelessWidget {
                   text: "SIGN UP",
                   press: () async {
                     if (_formKey.currentState!.validate() == true) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => RegisterFuture(
-                              future: context
-                                  .read<UserManager>()
-                                  .registerNewUser(
-                                      UserModel.attributes(
-                                          firstName: firstName,
-                                          lastName: lastName,
-                                          phoneNumber: phoneNumber,
-                                          userType: userType,
-                                          email: email),
-                                      password),
-                            ),
-                          ));
+                      Navigation.navigate(
+                          context: context,
+                          future: context.read<UserManager>().registerNewUser(
+                              UserModel.attributes(
+                                  firstName: firstName,
+                                  lastName: lastName,
+                                  phoneNumber: phoneNumber,
+                                  userType: userType,
+                                  email: email),
+                              password),
+                          initialRoute: '/register',
+                          destinationRoute: '/home',
+                          message: 'Welcome! $firstName');
+                          
                     }
                   }),
               LoginRegisterLink(
@@ -140,49 +139,5 @@ class RegisterBody extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class RegisterFuture extends StatelessWidget {
-  const RegisterFuture({
-    super.key,
-    required this.future,
-  });
-
-  final Future future;
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: future,
-        builder: (_, snap) {
-          Widget widget = const RegisterScreen();
-          if (snap.connectionState == ConnectionState.done) {
-            if (snap.hasError) {
-              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-                var error = snap.error as UserDataException;
-
-                Messenger.showSnackBar(
-                    message: error.errorMessage, context: context);
-              });
-            } else {
-              // send user to home screen
-              widget = const HomeScreen();
-              //message to confirm user has been registered
-              SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-                Messenger.showSnackBar(
-                    message: "Hurray! You are registered", context: context);
-              });
-            }
-          } else if (snap.connectionState == ConnectionState.waiting) {
-            widget = const LoadingScreen();
-          } else {
-            SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-              Messenger.showSnackBar(
-                  message: "Something went wrong", context: context);
-            });
-          }
-
-          return widget;
-        });
   }
 }

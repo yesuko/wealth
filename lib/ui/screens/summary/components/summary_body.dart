@@ -132,7 +132,7 @@ class SummaryAccount extends StatelessWidget {
           percentage: context.read<EmergencyAccountManager>().rate,
           onTap: () {
             // move to the 2nd tab of the account screen
-            //Navigator.pushNamed(context, '/account', arguments: 1);
+            //Navigator.pushNamed(context, '/home/account', arguments: 1);
             context.read<HomeScreenManager>().selectedIndex = 1;
             context.read<AccountScreenManager>().selectedTab = 1;
           },

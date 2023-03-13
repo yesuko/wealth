@@ -10,6 +10,7 @@ import 'package:wealth/ui/widgets/loader.dart';
 import 'package:wealth/util.dart';
 
 import '../../../widgets/messenger.dart';
+import '../../../widgets/navigator.dart';
 
 class UserSettingsBody extends StatelessWidget {
   const UserSettingsBody({Key? key}) : super(key: key);
@@ -45,12 +46,7 @@ class UserSettingsBody extends StatelessWidget {
                         child: const Text("Cancel")),
                     TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                            return LogoutFuture(
-                              future: context.read<UserManager>().signUserOut(),
-                            );
-                          }));
+                          Navigation.navigate(context: context, future: context.read<UserManager>().signUserOut(), initialRoute: '/home', destinationRoute: '/login');
                         },
                         child: const Text("Log out")),
                   ],

@@ -10,7 +10,7 @@ import 'package:wealth/ui/widgets/loader.dart';
 import 'package:wealth/util.dart';
 
 import '../../../widgets/messenger.dart';
-import '../../../widgets/navigation.dart';
+import '../../../widgets/future_navigator.dart';
 
 class UserSettingsBody extends StatelessWidget {
   const UserSettingsBody({Key? key}) : super(key: key);
@@ -46,7 +46,7 @@ class UserSettingsBody extends StatelessWidget {
                         child: const Text("Cancel")),
                     TextButton(
                         onPressed: () {
-                          Navigation.navigate(
+                          FutureNavigator.navigate(
                             context: context,
                             future: context.read<UserManager>().signUserOut(),
                             initialRoute: '/home',

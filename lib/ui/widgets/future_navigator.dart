@@ -4,7 +4,7 @@ import 'package:flutter/scheduler.dart';
 import '../../logic/models/exceptions.dart';
 import 'messenger.dart';
 
-class Navigation {
+class FutureNavigator {
   /// future - future to run.
   /// initialRoute - the route name from which the function was called.
   ///                This serves as a return to widget incase error occured.

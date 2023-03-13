@@ -15,7 +15,7 @@ import '../../../../logic/models/exceptions.dart';
 import '../../../ui_validator.dart';
 import '../../../widgets/loader.dart';
 import '../../../widgets/messenger.dart';
-import '../../../widgets/navigation.dart';
+import '../../../widgets/future_navigator.dart';
 
 class LoginBody extends StatelessWidget {
   LoginBody({super.key});
@@ -66,7 +66,7 @@ class LoginBody extends StatelessWidget {
                     text: "LOG IN",
                     press: () {
                       if (_formKey.currentState!.validate() == true) {
-                        Navigation.navigate(
+                        FutureNavigator.navigate(
                           context: context,
                           future: context.read<UserManager>().signInUser(
                                 email,

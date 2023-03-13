@@ -16,7 +16,7 @@ import '../../../../logic/managers/user_manager.dart';
 import '../../../../logic/models/user_model.dart';
 import '../../../ui_validator.dart';
 import '../../../widgets/loader.dart';
-import '../../../widgets/navigation.dart';
+import '../../../widgets/future_navigator.dart';
 
 // global variable shared by the register body and avarta pane to hole the type of user
 late String userType;
@@ -108,7 +108,7 @@ class RegisterBody extends StatelessWidget {
                   text: "SIGN UP",
                   press: () async {
                     if (_formKey.currentState!.validate() == true) {
-                      Navigation.navigate(
+                      FutureNavigator.navigate(
                           context: context,
                           future: context.read<UserManager>().registerNewUser(
                               UserModel.attributes(

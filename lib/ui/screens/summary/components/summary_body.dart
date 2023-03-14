@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
+import 'package:wealth/services/hubtel_payment.dart';
 import 'package:wealth/ui/controllers/managers/home_screen_manager.dart';
 import 'package:wealth/ui/screens/summary/components/summary_sheets.dart';
 import 'package:wealth/ui/widgets/header_text.dart';
@@ -39,7 +40,7 @@ class SummaryLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(text: header, paddingVertival: 10),
+        HeaderText(text: header, paddingVertival: 10, paddingHorizontal: 10),
         child,
       ],
     );
@@ -80,7 +81,7 @@ class SummaryIncome extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: InkWell(
               onTap: () {
-                PocketBottomSheet.showViewSourceSheet(context);
+                SummaryBottomSheet.showViewSourceSheet(context);
               },
               child: const Text.rich(
                 TextSpan(
@@ -122,6 +123,7 @@ class SummaryAccount extends StatelessWidget {
             //Navigator.pushNamed(context, '/account', arguments: 0);
             context.read<HomeScreenManager>().selectedIndex = 1;
             context.read<AccountScreenManager>().selectedTab = 0;
+           
           },
         ),
         SummaryCard(
@@ -155,32 +157,34 @@ class SummaryActivities extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SummaryActivity(
-            title: "Add Source",
-            icon: Image.asset("assets/icons/gold.png"),
-            onTap: () {
-              PocketBottomSheet.showAddIncomeSourceSheet(context);
-            },
-          ),
+         
           SummaryActivity(
             title: "Add Income",
             icon: Image.asset("assets/icons/add_income_dark.png"),
             onTap: () {
-              PocketBottomSheet.showListOfSourecesAndUpdateIncome(context);
+              SummaryBottomSheet.showListOfSourecesAndUpdateIncome(context);
+            },
+          ),
+            SummaryActivity(
+            title: "Withdraw Money",
+            icon: Image.asset("assets/icons/payment.png"),
+            onTap: () {},
+          ),
+           SummaryActivity(
+            title: "Add Source",
+            icon: Image.asset("assets/icons/gold.png"),
+            onTap: () {
+              SummaryBottomSheet.showAddIncomeSourceSheet(context);
             },
           ),
           SummaryActivity(
             title: "Set Allocation",
             icon: Image.asset("assets/icons/rate.png"),
             onTap: () {
-              PocketBottomSheet.showAccountsAndSetRateAllocation(context);
+              SummaryBottomSheet.showAccountsAndSetRateAllocation(context);
             },
           ),
-          SummaryActivity(
-            title: "Withdraw Money",
-            icon: Image.asset("assets/icons/payment.png"),
-            onTap: () {},
-          ),
+        
         ],
       ),
     );

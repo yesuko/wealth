@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wealth/settings/provider_setting.dart';
+import 'package:wealth/ui/screens/webview/webview_screen.dart';
 import 'package:wealth/ui/startapp_screen.dart';
 import 'package:wealth/util.dart';
 
@@ -24,7 +25,7 @@ class StartAppSetting extends StatelessWidget {
           '/login': (context) => const LoginScreen(),
           '/update': (context) => const UpdateAppScreen(),
           '/loading': (context) => const LoadingScreen(),
-            
+          '/home/webview': (context) => const WebViewScreen(),
         },
         debugShowCheckedModeBanner: false,
         title: kAppTitle,

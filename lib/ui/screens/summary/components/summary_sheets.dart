@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -7,18 +9,20 @@ import 'package:wealth/logic/models/income_source_model.dart';
 import 'package:wealth/ui/controllers/summary_controller.dart';
 import 'package:wealth/ui/ui_validator.dart';
 import 'package:wealth/ui/widgets/bottom_sheet.dart';
+import 'package:wealth/ui/widgets/future_navigator.dart';
 import 'package:wealth/ui/widgets/messenger.dart';
 import 'package:wealth/ui/widgets/rounded_button.dart';
 import 'package:wealth/ui/widgets/rounded_input_field.dart';
 import 'package:wealth/ui/widgets/tile.dart';
 import 'package:wealth/util.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class PocketBottomSheet {
+class SummaryBottomSheet {
   static showAddIncomeSourceSheet(
     BuildContext context,
   ) {
     String? name;
-    String amount = "0.00";
+    String? amount;
 
     final formKey = GlobalKey<FormState>();
 
@@ -44,7 +48,7 @@ class PocketBottomSheet {
               iconData: Icons.money,
               hintText: "0.00",
               initialValue: null,
-              enabled: false,
+              enabled: true,
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 amount = value;
@@ -54,25 +58,35 @@ class PocketBottomSheet {
               },
             ),
             RoundedButton(
-              text: "Add amount",
+              text: "Proceed",
               press: () async {
                 if (formKey.currentState!.validate()) {
-                  //await UssdAdvanced.sendUssd(
-                  //     code: "*171*1*3*0559904540#", subscriptionId: 1);
-                  if (name != null) {
-                    SummaryController.addNewIncomeSource(
-                      context,
-                      IncomeSourceModel.withAttibutes(
-                        name: name!,
-                        createdOn: DateTime.now(),
-                        income: double.parse(amount),
-                      ),
-                    );
+                  if (name != null && amount != null) {
+                    // String response =
+                    //     await SummaryController.addNewIncomeSource(
+                    //   context,
+                    //   IncomeSourceModel.withAttibutes(
+                    //     name: name!,
+                    //     createdOn: DateTime.now(),
+                    //     income: double.parse(amount!),
+                    //   ),
+                    // );
+
+                    FutureNavigator.navigate(
+                        context: context,
+                        future: SummaryController.addIncome(
+                          name!,
+                          double.parse(amount!),
+                        ),
+                        initialRoute: '/home',
+                        destinationRoute: '/home/webview',
+                        callback: () {});
 
                     Messenger.showSnackBar(
                       message: "$name added to Income Sources",
                       context: context,
                     );
+
                     Navigator.pop(context);
                   }
                 }

@@ -16,6 +16,7 @@ class FutureNavigator {
     required String initialRoute,
     required String destinationRoute,
     void Function()? callback,
+    Object? arguments,
   }) async {
     // show loading screen
     Navigator.pushNamed(context, '/loading');
@@ -28,7 +29,8 @@ class FutureNavigator {
             callback();
           });
         }
-        Navigator.pushNamed(context, destinationRoute);
+        Navigator.pushNamed(context, destinationRoute,
+            arguments: arguments ?? value);
       });
     } catch (error) {
       // handle error and show error screen

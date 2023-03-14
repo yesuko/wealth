@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wealth/logic/models/account_model.dart';
 import 'package:wealth/logic/models/income_source_model.dart';
+import 'package:wealth/services/hubtel_payment.dart';
 
 class IncomeSourceManager extends ChangeNotifier {
   late final List<IncomeSourceModel> incomeSources;
@@ -15,8 +16,10 @@ class IncomeSourceManager extends ChangeNotifier {
     calculateAndUpdateTotalIncome();
   }
 
-  void addIncomeSource(IncomeSourceModel incomeSourceModel) {
-    incomeSources.add(incomeSourceModel);
+ void addIncomeSource(IncomeSourceModel model) {
+  
+
+    incomeSources.add(model);
     notifyListeners();
   }
 

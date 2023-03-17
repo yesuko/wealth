@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:wealth/logic/managers/account_manager.dart';
 import 'package:wealth/logic/managers/income_source_manager.dart';
@@ -23,7 +24,7 @@ class SummaryController {
     updateAllAccountBalance(context);
   }
 
-  static Future<String> addIncome(String source, double amount) async {
+  static Future<Map<Uri,Response>> addIncome(String source, double amount) async {
     return HubtelPayment.makePayment(source, amount);
   }
 }
